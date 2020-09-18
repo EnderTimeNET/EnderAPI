@@ -1,0 +1,43 @@
+ev.use
+tp.use
+
+autonick.use
+autonick.loadskins
+autonick.checknick
+
+coinapi.addcoins
+coinapi.removecoins
+coinapi.resetcoins
+
+ek.commands.ban					[Bannsystem] 	/ban <spieler> <banid>
+ek.commands.chatclear			[Mutesystem] 	/cc <server>
+ek.commands.jump				[Reportsystem]	/jump <server/spieler>
+ek.commands.mute				[Mutesystem]	/mute <spieler> <muteid>
+ek.commands.showskin			[Reportsystem]	/showskin <spieler>					(invis command)
+ek.commands.unban				[Bannsystem]	/unban <spieler> <unbanid>
+ek.commands.unmute				[Mutesystem]	/unmute <spieler> <unmuteid>
+ek.notify.reports				[Reportsystem]	Kriegt Messages bei Reports
+ek.banreason.1 - 9 & 20			[Bannsystem]	Permission für die einzelnen Banngründe
+ek.commands.chatlog				[Mutesystem]	/chatlog <spieler>
+ek.commands.chatmute			[Mutesystem]	/chatmute
+ek.commands.check				[Playerinfo]	/check <spieler>
+ek.commands.cps					[Playerinfo]	/cps <spieler>
+ek.commands.playerinfo			[Playerinfo]	/pi <spieler>
+ek.commands.report				[Reportsystem]	/report <grund> <spieler> (<spieler>)
+ek.commands.vanish				[Reportsystem]	/v
+ek.info.seeunbans				[Playerinfo]	Zeigt Unbanns von Spielern mit der ek.displayunbans permission
+ek.info.displayunbans			[Playerinfo]	Stellt die Unbanns den Spielern mit der ek.info.seeunbans permission zur Verfügung
+ek.commands.reports				[Reportsystem]	/reports
+ek.commands.vjump				[Reportsystem]	/vjump <server/spieler>
+ek.commands.closereport			[Reportsystem]	/closereport <reportid>				(invis command)
+ek.commands.notifys				[Notifys]		/notifys
+ek.commands.invsee				[Reportsystem]	/invsee <spieler>
+ek.commands.enderchest			[Reportsystem]	/ec <spieler>
+ek.canworkallreports			[Reportsystem]	Lässt alle Reportgründe bearbeiten (Nicht den JrSups geben)
+ek.notify.chatfilter			[Chatfilter]	Erhält Chatfilter
+ek.commands.teleport			[Reportsystem] 	/tp <spieler> <spieler> oder /tp x y z
+ek.commands.rejectreport		[Reportsystem]	/rejectreport <reportid>			(invis command)
+ek.commands.kick				[Bannsystem]	/kick <spieler> <kickid>
+ek.commands.editmute			[Mutesystem]	/em <spieler>
+ek.commands.editban				[Bannsystem]	/eb <spieler>
+ek.shortenpunishall				[Bann/Mute]		lässt alle Bans/Mutes verkürzen

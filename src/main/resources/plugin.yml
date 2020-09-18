@@ -1,0 +1,34 @@
+name: EnderAPI
+version: 1.0
+author: DerMoechtegamer/EnderArray
+
+main: net.endertime.enderapi.spigot.Spigot
+depend: [ProtocolLib]
+
+commands:
+  addcoins:
+  removecoins:
+  resetcoins:
+  unnick:
+  nicklist:
+  savenick:
+  rs:
+  stats:
+  perm:
+  rank:
+  reset:
+  check:
+  report:
+  pi:
+  if:
+  v:
+  reports:
+  notifys:
+  ec:
+  invsee:
+  tp:
+  eb:
+  em:
+  apply:
+  joinme:
+  verify:

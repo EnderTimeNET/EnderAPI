@@ -1,0 +1,34 @@
+name: EnderAPI
+version: 1.0
+author: DerMoechtegamer/EnderArray
+
+main: net.endertime.enderapi.bungee.Bungee
+
+commands:
+  f:
+  friend:
+  msg:
+  reply:
+  r:
+  p:
+  party:
+  clan:
+  c:
+  jump:
+  cc:
+  mute:
+  ban:
+  unban:
+  unmute:
+  showskin:
+  vjump:
+  closereport:
+  rejectreport:
+  kick:
+  chatmute:
+  chatlog:
+  info:
+  tc:
+  ping:
+  bc:
+  help:
