@@ -45,11 +45,6 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
 
-        <repository>
-            <id>cloudnet</id>
-            <url>https://repo.cloudnetservice.eu/repository/releases/</url>
-        </repository>
-
         <!--  New Maven repository for snapshots -->
         <repository>
             <id>cloudnet</id>
