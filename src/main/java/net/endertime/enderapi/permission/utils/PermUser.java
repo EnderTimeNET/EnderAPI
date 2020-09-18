@@ -1,17 +1,12 @@
-package net.endertime.enderapi.spigot.utils;
+package net.endertime.enderapi.permission.utils;
 
 import net.endertime.enderapi.permission.PermAPI;
-import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
 public class PermUser {
 
     private UUID uuid;
-
-    public PermUser(Player player) {
-        this.uuid = player.getUniqueId();
-    }
 
     public PermUser(UUID uuid) {
         this.uuid = uuid;
