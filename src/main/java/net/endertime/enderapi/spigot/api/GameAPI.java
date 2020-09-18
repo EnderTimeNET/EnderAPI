@@ -15,7 +15,7 @@ public class GameAPI {
     private boolean hideSpectatorChat = false; //Is true only Spectator see Chat
     private boolean spectatorDiePrefixChat = false; //Is true the Chat got a X
     private boolean globalChat = false;
-    private State state;
+    private State state = State.ONLINE;
 
     public void setState(State state) {
         BukkitCloudNetHelper.setState(State.toString(state));

@@ -100,7 +100,10 @@ public class NickAPI {
         if (!Wrapper.getInstance().getServiceId().getName().contains("Lobby")
                 && !Wrapper.getInstance().getServiceId().getName().startsWith("Vorbau")
                 && !Wrapper.getInstance().getServiceId().getName().startsWith("Terra")
-                && !Wrapper.getInstance().getServiceId().getName().startsWith("Event"))  {
+                && !Wrapper.getInstance().getServiceId().getName().startsWith("Event")
+                && !Wrapper.getInstance().getServiceId().getName().startsWith("Build")
+                && !Wrapper.getInstance().getServiceId().getName().startsWith("Content")
+                && !Wrapper.getInstance().getServiceId().getName().contains("Dev"))  {
             return true;
         }
         return false;
