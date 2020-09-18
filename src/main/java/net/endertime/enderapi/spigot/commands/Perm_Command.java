@@ -1,6 +1,6 @@
 package net.endertime.enderapi.spigot.commands;
 
-import net.endertime.enderapi.permission.PermAPI;
+import net.endertime.enderapi.spigot.api.PermAPI;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -10,10 +10,11 @@ import net.endertime.enderapi.bungee.listener.LoginListener;
 import net.endertime.enderapi.clan.ClanAPI;
 import net.endertime.enderapi.database.databaseapi.DataBaseAPI;
 import net.endertime.enderapi.database.databaseapi.mysql.PreparedStatement;
-import net.endertime.enderapi.permission.PermAPI;
+import net.endertime.enderapi.bungee.api.PermAPI;
 import net.endertime.enderkomplex.bungee.commands.*;
 import net.endertime.enderapi.bungee.listener.*;
 import net.endertime.enderkomplex.bungee.container.ChatBlacklist;
+import net.endertime.enderkomplex.bungee.core.ProxyData;
 import net.endertime.enderkomplex.bungee.utils.*;
 import net.endertime.enderkomplex.mysql.Database;
 import net.labymod.serverapi.LabyModAPI;
@@ -51,10 +52,10 @@ public class Bungee extends Plugin {
     @Override
     public void onEnable() {
         instance = this;
+        ProxyData.Instance = this;
+        DataBaseAPI.instance = new DataBaseAPI(true);
         ClanAPI.instance = new ClanAPI(true);
-        PermAPI.instance = new PermAPI(true);
-
-        PermAPI.getInstance().registerListener();
+        PermAPI.instance = new PermAPI();
 
         getProxy().registerChannel("enderkomplex");
 
@@ -76,24 +77,6 @@ public class Bungee extends Plugin {
         getProxy().getPluginManager().registerListener(this, new PlayerJoinListener());
         getProxy().getPluginManager().registerListener(this, new PluginMessageListener());
 
-        CloudNetDriver.getInstance().getEventManager().registerListener(new ChannelMessageReceiveListener());
-        CloudNetDriver.getInstance().getEventManager().registerListener(new CloudServerStartListener());
-
-        pm.registerListener(this, new LoginListener());
-        pm.registerListener(this, new PlayerDisconnectListener());
-        pm.registerListener(this, new PostLoginListener());
-        pm.registerListener(this, new ServerSwitchListener());
-
-        pm.registerCommand(this, new Friend_Command("f", EnderAPI.getInstance().getFriend()));
-        pm.registerCommand(this, new Friend_Command("friend", EnderAPI.getInstance().getFriend()));
-        pm.registerCommand(this, new MSG_Command(EnderAPI.getInstance().getFriend()));
-        pm.registerCommand(this, new Reply_Command("r"));
-        pm.registerCommand(this, new Reply_Command("reply"));
-        pm.registerCommand(this, new Party_Command("p", EnderAPI.getInstance().getPartyManager()));
-        pm.registerCommand(this, new Party_Command("party", EnderAPI.getInstance().getPartyManager()));
-        pm.registerCommand(this, new Clan_Command("c"));
-        pm.registerCommand(this, new Clan_Command("clan"));
-
 
         if (CloudNetDriver.getInstance().getCloudServiceProvider().getCloudServiceByName("Proxy-1").getAddress().getPort() == 25565) {
             ChatBlacklist.fillArrayList();
@@ -104,6 +87,14 @@ public class Bungee extends Plugin {
 
             InfoCollector.lastrestart = new Date();
             InfoCollector.startClearRunnable();
+
+            CloudNetDriver.getInstance().getEventManager().registerListener(new ChannelMessageReceiveListener());
+            CloudNetDriver.getInstance().getEventManager().registerListener(new CloudServerStartListener());
+
+            pm.registerListener(this, new LoginListener());
+            pm.registerListener(this, new PlayerDisconnectListener());
+            pm.registerListener(this, new PostLoginListener());
+            pm.registerListener(this, new ServerSwitchListener());
 
             pm.registerListener(this, new ChatListener());
             pm.registerListener(this, new net.endertime.enderkomplex.bungee.utils.ChannelListener());
@@ -117,6 +108,16 @@ public class Bungee extends Plugin {
             pm.registerListener(this, new OnlineTime());
             pm.registerListener(this, new JoinSpammer());
             pm.registerListener(this, new GameTitles());
+
+            pm.registerCommand(this, new Friend_Command("f", EnderAPI.getInstance().getFriend()));
+            pm.registerCommand(this, new Friend_Command("friend", EnderAPI.getInstance().getFriend()));
+            pm.registerCommand(this, new MSG_Command(EnderAPI.getInstance().getFriend()));
+            pm.registerCommand(this, new Reply_Command("r"));
+            pm.registerCommand(this, new Reply_Command("reply"));
+            pm.registerCommand(this, new Party_Command("p", EnderAPI.getInstance().getPartyManager()));
+            pm.registerCommand(this, new Party_Command("party", EnderAPI.getInstance().getPartyManager()));
+            pm.registerCommand(this, new Clan_Command("c"));
+            pm.registerCommand(this, new Clan_Command("clan"));
 
             pm.registerCommand(this, new BanCommand("ban"));
             pm.registerCommand(this, new MuteCommand("mute"));

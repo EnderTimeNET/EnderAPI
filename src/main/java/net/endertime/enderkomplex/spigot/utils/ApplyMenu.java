@@ -2,7 +2,7 @@ package net.endertime.enderkomplex.spigot.utils;
 
 import java.util.UUID;
 
-import net.endertime.enderapi.permission.PermAPI;
+import net.endertime.enderapi.spigot.api.PermAPI;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderkomplex.mysql.Database;
 import org.bukkit.Bukkit;

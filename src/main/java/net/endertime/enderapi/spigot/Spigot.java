@@ -1,5 +1,10 @@
 package net.endertime.enderapi.spigot;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.events.ListenerPriority;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketEvent;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -10,13 +15,14 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import net.endertime.enderapi.clan.ClanAPI;
 import net.endertime.enderapi.database.databaseapi.DataBaseAPI;
-import net.endertime.enderapi.permission.PermAPI;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderapi.spigot.api.NickAPI;
+import net.endertime.enderapi.spigot.api.PermAPI;
 import net.endertime.enderapi.spigot.commands.*;
 import net.endertime.enderapi.spigot.listener.*;
 import net.endertime.enderapi.spigot.listener.VanishListener;
 import net.endertime.enderkomplex.spigot.commands.*;
+import net.endertime.enderkomplex.spigot.core.ServerData;
 import net.endertime.enderkomplex.spigot.objects.InfoFeed;
 import net.endertime.enderkomplex.spigot.utils.*;
 import net.labymod.serverapi.Addon;
@@ -31,6 +37,7 @@ import net.labymod.serverapi.bukkit.event.PermissionsSendEvent;
 import net.labymod.serverapi.bukkit.listener.PlayerJoinListener;
 import net.labymod.serverapi.bukkit.utils.PacketUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
@@ -54,12 +61,16 @@ public class Spigot extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
+        ServerData.Instance = this;
         DataBaseAPI.instance = new DataBaseAPI(false);
-        PermAPI.instance = new PermAPI(false);
+        PermAPI.instance = new PermAPI();
         ClanAPI.instance = new ClanAPI(false);
+
+        labySetup();
 
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "enderkomplex", new VanishListener());
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new BadlionListener());
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "enderkomplex", new ChannelListener());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "enderkomplex");
@@ -83,6 +94,7 @@ public class Spigot extends JavaPlugin {
         }
 
         clearRecipes();
+        registerProtocolSoundBlocker();
 
         if (CloudNetDriver.getInstance().getCloudServiceProvider().getCloudServiceByName("Proxy-1").getAddress().getPort() == 25565) {
             BossbarHandler.startUpdater();
@@ -105,20 +117,17 @@ public class Spigot extends JavaPlugin {
 
     private void registerEvents(final PluginManager pm) {
         pm.registerEvents(new AsyncPlayerChatListener(), this);
-        pm.registerEvents(new BadlionListener(), this);
-        pm.registerEvents(new PlayerChatTabCompleteListener(), this);
         pm.registerEvents(new net.endertime.enderapi.spigot.listener.PlayerJoinListener(), this);
-        pm.registerEvents(new PlayerLoginListener(), this);
         pm.registerEvents(new PlayerQuitListener(), this);
-        pm.registerEvents(new TabCompleteListener(), this);
-        pm.registerEvents(new net.endertime.enderkomplex.spigot.utils.VanishListener(), this);
-
-        PermAPI.getInstance().registerListener();
 
 
         if (CloudNetDriver.getInstance().getCloudServiceProvider().getCloudServiceByName("Proxy-1").getAddress().getPort() == 25565) {
             pm.registerEvents(new BadlionListener(), this);
             pm.registerEvents(new Restart_Command(), this);
+            pm.registerEvents(new PlayerChatTabCompleteListener(), this);
+            pm.registerEvents(new PlayerLoginListener(), this);
+            pm.registerEvents(new TabCompleteListener(), this);
+            pm.registerEvents(new net.endertime.enderkomplex.spigot.utils.VanishListener(), this);
 
 
             pm.registerEvents(new CheckCommand(), this);
@@ -284,5 +293,20 @@ public class Spigot extends JavaPlugin {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public void registerProtocolSoundBlocker() {
+        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(plugin, ListenerPriority.NORMAL,
+                PacketType.Play.Server.NAMED_SOUND_EFFECT) {
+            @Override
+            public void onPacketSending(PacketEvent e) {
+                if(e.getPacketType() == PacketType.Play.Server.NAMED_SOUND_EFFECT) {
+                    if(e.getPacket().getSoundEffects().getValues().contains(Sound.ENTITY_PLAYER_ATTACK_NODAMAGE)
+                            || e.getPacket().getSoundEffects().getValues().contains(Sound.ENTITY_PLAYER_ATTACK_KNOCKBACK)) {
+                        e.setCancelled(true);
+                    }
+                }
+            }
+        });
     }
 }

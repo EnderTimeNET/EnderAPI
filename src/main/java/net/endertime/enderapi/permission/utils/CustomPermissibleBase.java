@@ -1,6 +1,6 @@
 package net.endertime.enderapi.permission.utils;
 
-import net.endertime.enderapi.permission.PermAPI;
+import net.endertime.enderapi.spigot.api.PermAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissibleBase;
 

@@ -1,14 +1,10 @@
-package net.endertime.enderapi.permission;
+package net.endertime.enderapi.spigot.api;
 
-import net.endertime.enderapi.permission.listener.PermissionCheckListener;
-import net.endertime.enderapi.permission.listener.PlayerLoginListener;
-import net.endertime.enderapi.permission.listener.PostLoginListener;
+import net.endertime.enderapi.permission.listener.spigot.PlayerLoginListener;
 import net.endertime.enderapi.permission.mysql.RankPermissions;
 import net.endertime.enderapi.permission.mysql.Ranks;
 import net.endertime.enderapi.permission.mysql.UserPermissions;
 import net.endertime.enderapi.permission.mysql.Users;
-import net.endertime.enderapi.spigot.api.EnderAPI;
-import net.md_5.bungee.api.ProxyServer;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,12 +19,8 @@ public class PermAPI {
         return instance;
     }
 
-    private boolean bungee;
-    private boolean start;
-
-    public PermAPI(boolean bungee) {
-        this.bungee = bungee;
-        start = false;
+    public PermAPI() {
+        registerListener();
     }
 
     private Ranks ranks = new Ranks();
@@ -69,7 +61,9 @@ public class PermAPI {
 
     public Users getUsers() {
         return users;
-    }public boolean hasPermission (UUID uuid, String permission) {
+    }
+
+    public boolean hasPermission (UUID uuid, String permission) {
         if (permissions.get(uuid).contains("*")) {
             return true;
         } else if (permissions.get(uuid).contains("-" + permission)) {
@@ -100,28 +94,15 @@ public class PermAPI {
     public void setGroup (UUID uuid, String group, long time) {
         getUsers().updateRank(uuid, group);
         getUsers().updateTime(uuid, time);
-        getUsers().updateTimeSet(uuid, java.lang.System.currentTimeMillis());
+        getUsers().updateTimeSet(uuid, System.currentTimeMillis());
     }
 
     public void addTimeToGroup (UUID uuid, long time) {
         getUsers().updateTime(uuid, getUsers().getTime(uuid) + time);
     }
 
-    public boolean isBungee() {
-        return bungee;
-    }
-
-    public void registerListener() {
-        if (!start) {
-            start = true;
-            if (isBungee()) {
-                ProxyServer.getInstance().getPluginManager().registerListener(net.endertime.enderapi.bungee.api.
-                        EnderAPI.getInstance().getPlugin(), new PermissionCheckListener());
-                ProxyServer.getInstance().getPluginManager().registerListener(net.endertime.enderapi.bungee.api.
-                        EnderAPI.getInstance().getPlugin(), new PostLoginListener());
-            } else {
-                EnderAPI.getInstance().getPlugin().getServer().getPluginManager().registerEvents(new PlayerLoginListener(), EnderAPI.getInstance().getPlugin());
-            }
-        }
+    private void registerListener() {
+        EnderAPI.getInstance().getPlugin().getServer().getPluginManager().registerEvents(new PlayerLoginListener(),
+                EnderAPI.getInstance().getPlugin());
     }
 }

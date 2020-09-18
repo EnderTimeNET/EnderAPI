@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class Invites {
 
-    private MySQL mysql = Clans.mysql;
+    private MySQL mysql = DataBaseAPI.getInstance().getMySQL("ENDERDATABASE");
 
     public boolean isTagExists (UUID uuid, String tag) {
         PreparedStatement ps = DataBaseAPI.getInstance().getPreparedStatement("SELECT * FROM INVITES WHERE UUID = ? AND TAG = ?");

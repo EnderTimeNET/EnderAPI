@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class Ranks {
 
-    private MySQL mysql = Clans.mysql;
+    private MySQL mysql = DataBaseAPI.getInstance().getMySQL("ENDERDATABASE");
 
     public boolean isTagExists (String tag) {
         PreparedStatement ps = DataBaseAPI.getInstance().getPreparedStatement("SELECT NAME FROM CLANRANKS WHERE TAG = ?");

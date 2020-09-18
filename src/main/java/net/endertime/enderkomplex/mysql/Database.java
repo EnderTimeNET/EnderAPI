@@ -4,7 +4,7 @@ import net.endertime.enderapi.bungee.api.EnderAPI;
 import net.endertime.enderapi.database.databaseapi.DataBaseAPI;
 import net.endertime.enderapi.database.databaseapi.mysql.MySQL;
 import net.endertime.enderapi.database.databaseapi.mysql.PreparedStatement;
-import net.endertime.enderapi.permission.PermAPI;
+import net.endertime.enderapi.spigot.api.PermAPI;
 import net.endertime.enderkomplex.bungee.core.ProxyData;
 import net.endertime.enderkomplex.bungee.enums.*;
 import net.endertime.enderkomplex.bungee.objects.*;

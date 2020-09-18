@@ -1,7 +1,7 @@
 package net.endertime.enderapi.spigot.utils;
 
 import net.endertime.enderapi.clan.ClanAPI;
-import net.endertime.enderapi.permission.PermAPI;
+import net.endertime.enderapi.spigot.api.PermAPI;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderapi.spigot.api.NickAPI;
 import net.endertime.enderapi.spigot.api.PartyAPI;

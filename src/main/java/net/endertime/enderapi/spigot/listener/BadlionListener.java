@@ -1,6 +1,6 @@
 package net.endertime.enderapi.spigot.listener;
 
-import net.endertime.enderapi.permission.PermAPI;
+import net.endertime.enderapi.spigot.api.PermAPI;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

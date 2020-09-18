@@ -1,6 +1,6 @@
-package net.endertime.enderapi.permission.listener;
+package net.endertime.enderapi.permission.listener.spigot;
 
-import net.endertime.enderapi.permission.PermAPI;
+import net.endertime.enderapi.spigot.api.PermAPI;
 import net.endertime.enderapi.permission.utils.CustomPermissibleBase;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftHumanEntity;
 import org.bukkit.entity.Player;

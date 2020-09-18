@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class ClanSettings {
 
-    private MySQL mysql = Clans.mysql;
+    private MySQL mysql = DataBaseAPI.getInstance().getMySQL("ENDERDATABASE");
 
     public boolean isUserExists (UUID uuid) {
         PreparedStatement ps = DataBaseAPI.getInstance().getPreparedStatement("SELECT NAME FROM SETTINGS WHERE UUID = ?");

@@ -1,6 +1,6 @@
-package net.endertime.enderapi.permission.listener;
+package net.endertime.enderapi.permission.listener.bungee;
 
-import net.endertime.enderapi.permission.PermAPI;
+import net.endertime.enderapi.bungee.api.PermAPI;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PermissionCheckEvent;
 import net.md_5.bungee.api.plugin.Listener;

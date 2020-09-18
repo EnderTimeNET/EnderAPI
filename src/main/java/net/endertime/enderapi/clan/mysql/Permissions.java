@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Permissions {
 
-    private MySQL mysql = Clans.mysql;
+    private MySQL mysql = DataBaseAPI.getInstance().getMySQL("ENDERDATABASE");
 
     public boolean isTagExists (String tag) {
         PreparedStatement ps = DataBaseAPI.getInstance().getPreparedStatement("SELECT RANK FROM PERMISSIONS WHERE TAG = ?");

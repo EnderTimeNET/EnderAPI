@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Clans {
 
-    public static MySQL mysql = DataBaseAPI.getInstance().getMySQL("ENDERDATABASE");
+    private MySQL mysql = DataBaseAPI.getInstance().getMySQL("ENDERDATABASE");
     private int member = 10;
 
     public MySQL getMysql() {

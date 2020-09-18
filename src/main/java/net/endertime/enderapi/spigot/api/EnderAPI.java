@@ -19,7 +19,6 @@ import net.endertime.enderapi.database.databaseapi.mysql.MySQL;
 import net.endertime.enderapi.database.databaseapi.mysql.PreparedStatement;
 import net.endertime.enderapi.database.enderapi.*;
 import net.endertime.enderapi.database.friends.*;
-import net.endertime.enderapi.permission.PermAPI;
 import net.endertime.enderapi.spigot.Spigot;
 import net.endertime.enderapi.spigot.utils.*;
 import net.endertime.enderapi.spigot.utils.SkullType;
