@@ -363,12 +363,6 @@ public class EnderAPI {
         }
     }
 
-    public void sendAFK (Player player) {
-        List<String> list = new ArrayList<>();
-        list.add(player.getUniqueId().toString());
-        sendToBungeeCord(player, "AFK", list);
-    }
-
     public void sendToServer(Player player, String target) {
         ICloudPlayer cloudPlayer = CloudNetDriver.getInstance().getServicesRegistry()
                 .getFirstService(IPlayerManager.class).getOnlinePlayer(player.getUniqueId());
@@ -506,34 +500,6 @@ public class EnderAPI {
 
     public void setSkinOnBlock(UUID uuid, Block block) {
         CreateSkulls.setBlock(block, EnderAPI.getInstance().getEnderDatabase().getSignature(uuid), EnderAPI.getInstance().getEnderDatabase().getValue(uuid));
-    }
-
-    public void sendToBungeeCord(Player p, String channel, List<String> info) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        DataOutputStream output = new DataOutputStream(stream);
-
-        try {
-            output.writeUTF(channel);
-            for (String s : info)
-                output.writeUTF(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        p.sendPluginMessage(EnderAPI.getInstance().getPlugin(), "EnderAPI", stream.toByteArray());
-    }
-
-    public void sendToBungeeCord(String pluginChannel, Player p, String channel, List<String> info) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        DataOutputStream output = new DataOutputStream(stream);
-
-        try {
-            output.writeUTF(channel);
-            for (String s : info)
-                output.writeUTF(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        p.sendPluginMessage(getPlugin(), pluginChannel, stream.toByteArray());
     }
 
     public void createHologram(Location loc, String text) {

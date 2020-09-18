@@ -1,6 +1,5 @@
 package net.endertime.enderapi.bungee.commands;
 
-import de.dytanic.cloudnet.common.document.gson.JsonDocument;
 import de.dytanic.cloudnet.driver.channel.ChannelMessage;
 import net.endertime.enderapi.bungee.api.EnderAPI;
 import net.endertime.enderapi.clan.ClanAPI;
@@ -12,7 +11,6 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;

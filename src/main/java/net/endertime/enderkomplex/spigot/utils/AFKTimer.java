@@ -104,7 +104,6 @@ public class AFKTimer implements Listener {
                                                         if(!afkplayers.contains(online)) {
                                                             afkplayers.add(online);
                                                             Database.saveTime(online.getUniqueId());
-                                                            EnderAPI.getInstance().sendAFK(online);
                                                         }
                                                     }
                                                 }
@@ -141,7 +140,6 @@ public class AFKTimer implements Listener {
                             }
                             afkplayers.remove(ll);
                             lastTime.remove(ll);
-                            EnderAPI.getInstance().sendAFK(ll);
                         }
                     }
                 });
@@ -177,7 +175,6 @@ public class AFKTimer implements Listener {
                         }
                         afkplayers.remove(p);
                         lastTime.remove(p);
-                        EnderAPI.getInstance().sendAFK(p);
                     }
                 }
             }
@@ -203,7 +200,6 @@ public class AFKTimer implements Listener {
                         }
                         afkplayers.remove(p);
                         lastTime.remove(p);
-                        EnderAPI.getInstance().sendAFK(p);
                     }
                 }
             }
@@ -229,7 +225,6 @@ public class AFKTimer implements Listener {
                         }
                         afkplayers.remove(p);
                         lastTime.remove(p);
-                        EnderAPI.getInstance().sendAFK(p);
                     }
                 }
             }
@@ -261,7 +256,6 @@ public class AFKTimer implements Listener {
                         }
                         afkplayers.remove(p);
                         lastTime.remove(p);
-                        EnderAPI.getInstance().sendAFK(p);
                     }
                 }
             }
@@ -287,7 +281,6 @@ public class AFKTimer implements Listener {
                         }
                         afkplayers.remove(p);
                         lastTime.remove(p);
-                        EnderAPI.getInstance().sendAFK(p);
                     }
                 }
             }
