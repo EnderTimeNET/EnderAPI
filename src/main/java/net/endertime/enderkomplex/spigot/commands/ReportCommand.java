@@ -1,6 +1,7 @@
 package net.endertime.enderkomplex.spigot.commands;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderapi.spigot.api.NickAPI;
@@ -37,36 +38,37 @@ public class ReportCommand implements CommandExecutor {
                                 EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
                                 return false;
                             }
-                            if(EnderAPI.getInstance().getUUID(args[0]) == null) {
-                                for(Player nicked : NickAPI.getInstance().getNickedPlayer().keySet()) {
-                                    if(nicked.getName().equalsIgnoreCase(args[0])) {
-                                        reports.put(p, nicked);
-                                        ReportListener.openReportGUI(p, args[0]);
-                                        cooldown.put(p, (System.currentTimeMillis() + 5000));
-                                        return false;
+                            String name = args[0];
+                            if (EnderAPI.getInstance().getTeamDatabase().isNicked(name)) {
+                                UUID uuidNick = EnderAPI.getInstance().getTeamDatabase().getUUIDFromNickedName(name);
+                                if (EnderAPI.getInstance().getTeamDatabase().isState(uuidNick)) {
+                                    if (Bukkit.getPlayer(uuidNick) != null) {
+                                        if (!p.getUniqueId().equals(uuidNick)) {
+                                            reports.put(p, Bukkit.getPlayer(uuidNick));
+                                            ReportListener.openReportGUI(p, args[0]);
+                                            cooldown.put(p, (System.currentTimeMillis() + 5000));
+                                        } else {
+                                            EnderAPI.getInstance().sendActionBar(p, "§7Du kannst dich §cnicht selber §7reporten§8!");
+                                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                                        }
+                                    } else {
+                                        EnderAPI.getInstance().sendActionBar(p, "§7Dieser Spieler ist §cnicht §7auf diesem Server§8!");
+                                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
                                     }
+                                } else {
+                                    EnderAPI.getInstance().sendActionBar(p, "§7Dieser Spieler ist §cnicht §7auf diesem Server§8!");
+                                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
                                 }
-                                EnderAPI.getInstance().sendActionBar(p, "§7Der Spieler §c" + args[0] + "§7 war noch nie auf §5EnderTime§8!");
-                                EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
-                                return false;
-                            }
-                            if(Bukkit.getPlayer(args[0]) == null) {
-                                for(Player nicked : NickAPI.getInstance().getNickedPlayer().keySet()) {
-                                    if(nicked.getName().equalsIgnoreCase(args[0])) {
-                                        reports.put(p, nicked);
-                                        ReportListener.openReportGUI(p, args[0]);
-                                        cooldown.put(p, (System.currentTimeMillis() + 5000));
-                                        return false;
-                                    }
-                                }
-                                EnderAPI.getInstance().sendActionBar(p, "§7Dieser Spieler ist §cnicht §7auf diesem Server§8!");
-                                EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
-                                return false;
                             } else {
-                                reports.put(p, Bukkit.getPlayer(args[0]));
+                                if (Bukkit.getPlayer(name) != null) {
+                                    reports.put(p, Bukkit.getPlayer(args[0]));
+                                    ReportListener.openReportGUI(p, args[0]);
+                                    cooldown.put(p, (System.currentTimeMillis() + 5000));
+                                } else {
+                                    EnderAPI.getInstance().sendActionBar(p, "§7Dieser Spieler ist §cnicht §7auf diesem Server§8!");
+                                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                                }
                             }
-                            ReportListener.openReportGUI(p, args[0]);
-                            cooldown.put(p, (System.currentTimeMillis() + 5000));
                         } else {
                             EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§creport §8<§cname§8>");
                             EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);

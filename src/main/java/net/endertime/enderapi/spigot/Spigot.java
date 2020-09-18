@@ -66,6 +66,8 @@ public class Spigot extends JavaPlugin {
         PermAPI.instance = new PermAPI();
         ClanAPI.instance = new ClanAPI(false);
 
+        TabCompleteListener.fillCommands();
+
         labySetup();
 
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "enderkomplex", new VanishListener());
