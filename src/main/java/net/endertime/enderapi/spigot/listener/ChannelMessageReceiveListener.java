@@ -96,6 +96,14 @@ public class ChannelMessageReceiveListener {
 
                     new Version(uuid, version);
                 }
+            } else if (event.getChannel().equalsIgnoreCase("enderkomplex")) {
+                if (event.getMessage().equalsIgnoreCase("pluginmessage")) {
+                    String action = event.getData().getString("action");
+                    UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                    if (action.equals("SET_VANISH")) {
+                        EnderAPI.getInstance().getVanishUUID().add(uuid);
+                    }
+                }
             }
         }
     }

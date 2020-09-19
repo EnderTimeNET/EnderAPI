@@ -1,5 +1,7 @@
 package net.endertime.enderkomplex.bungee.commands;
 
+import de.dytanic.cloudnet.common.document.gson.JsonDocument;
+import de.dytanic.cloudnet.driver.channel.ChannelMessage;
 import net.endertime.enderapi.bungee.api.EnderAPI;
 import net.endertime.enderapi.bungee.utils.State;
 import net.endertime.enderkomplex.bungee.core.ProxyHandler;
@@ -33,6 +35,13 @@ public class VjumpCommand extends Command {
                                 EnderAPI.getInstance().getState(serverinfo.getName()).equals(State.INGAME)) {
                             ProxiedPlayer target = ProxyServer.getInstance().getPlayer(arg);
                             ProxyHandler.sendPluginMessage(target, PluginMessage.SET_VANISH, pp.getName());
+                            ChannelMessage.builder()
+                                    .channel("enderkomplex")
+                                    .message("pluginmessage")
+                                    .json(JsonDocument.newDocument().append("action", PluginMessage.SET_VANISH.toString()).append("uuid", pp.getUniqueId()))
+                                    .targetService(target.getServer().getInfo().getName())
+                                    .build()
+                                    .send();
                             pp.connect(ProxyServer.getInstance().getServerInfo(ProxyServer.getInstance().getPlayer(arg).getServer().getInfo().getName()));
                         } else {
                             ProxyHandler.sendPluginMessage(pp, PluginMessage.SEND_ACTIONBAR, "§7Du kannst §cjetzt nicht §7dort hin springen§8!");

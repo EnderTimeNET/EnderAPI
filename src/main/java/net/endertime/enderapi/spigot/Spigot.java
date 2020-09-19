@@ -20,7 +20,6 @@ import net.endertime.enderapi.spigot.api.NickAPI;
 import net.endertime.enderapi.spigot.api.PermAPI;
 import net.endertime.enderapi.spigot.commands.*;
 import net.endertime.enderapi.spigot.listener.*;
-import net.endertime.enderapi.spigot.listener.VanishListener;
 import net.endertime.enderkomplex.spigot.commands.*;
 import net.endertime.enderkomplex.spigot.core.ServerData;
 import net.endertime.enderkomplex.spigot.objects.InfoFeed;
@@ -70,7 +69,6 @@ public class Spigot extends JavaPlugin {
 
         labySetup();
 
-        this.getServer().getMessenger().registerIncomingPluginChannel(this, "enderkomplex", new VanishListener());
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new BadlionListener());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
