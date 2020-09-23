@@ -57,6 +57,8 @@ public class Bungee extends Plugin {
         ClanAPI.instance = new ClanAPI(true);
         PermAPI.instance = new PermAPI();
 
+        register(getProxy().getPluginManager());
+
         getProxy().registerChannel("enderkomplex");
 
         if (CloudNetDriver.getInstance().getCloudServiceProvider().getCloudServiceByName("Proxy-1").getAddress().getPort() == 25565) {

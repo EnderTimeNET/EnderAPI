@@ -37,7 +37,7 @@ public class VanishCommand implements CommandExecutor {
                                 EnderAPI.getInstance().sendActionBar(p, "§7Du bist nun unsichtbar§8!");
                                 EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 2);
                                 Bukkit.getOnlinePlayers().forEach(all -> {
-                                    if (!all.hasPermission("teamserver.join")) {
+                                    if (!all.hasPermission("ek.commands.vanish")) {
                                         EnderAPI.getInstance().hidePlayer(all, p);
                                     } else {
                                         (((CraftPlayer) all).getHandle()).playerConnection
@@ -58,7 +58,7 @@ public class VanishCommand implements CommandExecutor {
                                 EnderAPI.getInstance().sendActionBar(p, "§7Du bist jetzt wieder sichtbar§8!");
                                 EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 2);
                                 Bukkit.getOnlinePlayers().forEach(all -> {
-                                    if (!all.hasPermission("teamserver.join")) {
+                                    if (!all.hasPermission("ek.commands.vanish")) {
                                         EnderAPI.getInstance().showPlayer(all, p);
                                     } else {
                                         (((CraftPlayer) all).getHandle()).playerConnection

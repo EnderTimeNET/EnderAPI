@@ -15,6 +15,7 @@ commands:
   rs:
   stats:
   perm:
+  seeperm:
   rank:
   reset:
   check:

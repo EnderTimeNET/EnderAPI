@@ -5,6 +5,7 @@ import de.dytanic.cloudnet.driver.CloudNetDriver;
 import de.dytanic.cloudnet.driver.service.ServiceInfoSnapshot;
 import de.dytanic.cloudnet.ext.bridge.BridgeServiceProperty;
 import net.endertime.enderapi.bungee.Bungee;
+import net.endertime.enderapi.bungee.api.PermAPI;
 import net.endertime.enderapi.bungee.utils.FriendManager;
 import net.endertime.enderapi.bungee.utils.PartyManager;
 import net.endertime.enderapi.bungee.utils.State;
@@ -43,6 +44,11 @@ public class EnderAPI {
     private TeamDatabase teamDatabase = new TeamDatabase();
     private NickDatabase nickDatabase = new NickDatabase();
     private EnderDatabase enderDatabase = new EnderDatabase();
+    private List<UUID> badlion = new ArrayList<>();
+
+    public List<UUID> getBadlion() {
+        return badlion;
+    }
 
     public TeamDatabase getTeamDatabase() {
         return teamDatabase;
@@ -146,7 +152,10 @@ public class EnderAPI {
     }
 
     public String getPrefix (UUID uuid) {
-        return getPrefix(uuid);
+        String prefix = PermAPI.getInstance().getRanks().getPrefix(PermAPI.getInstance().getGroup(uuid));
+        if (prefix == null)
+            return "§7";
+        return prefix;
     }
 
     public String getCompletedPrefix (UUID uuid) {
@@ -201,7 +210,10 @@ public class EnderAPI {
     public String prefixClan = "§8§l┃ §6Clan §8» ";
 
     public String getPrefix(ProxiedPlayer pp) {
-        return getPrefix(pp.getUniqueId());
+        String prefix = PermAPI.getInstance().getRanks().getPrefix(PermAPI.getInstance().getGroup(pp.getUniqueId()));
+        if (prefix == null)
+            return "§7";
+        return prefix;
     }
 
     public Map<ProxiedPlayer, ProxiedPlayer> getMsg() {

@@ -114,7 +114,7 @@ public class Rank_Command implements CommandExecutor, Listener {
                     UUID uuid = EnderAPI.getInstance().getUUID(args[0]);
                     if (uuid != null) {
                         if (!PermAPI.getInstance().getGroup(uuid).equals("Admin")
-                                && !PermAPI.getInstance().getGroup(uuid).equals("SrMod")) {
+                                && !PermAPI.getInstance().getGroup(uuid).equals("Owner")) {
                             openInv(sender, uuid);
                         } else {
                             EnderAPI.getInstance().sendActionBar(sender, "§7Du kannst " + EnderAPI.getInstance().getPrefix(uuid)

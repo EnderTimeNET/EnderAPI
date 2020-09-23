@@ -27,24 +27,28 @@ public class ChannelMessageReceiveListener {
                 } else if (event.getMessage().equalsIgnoreCase("party")) {
                     if (!Wrapper.getInstance().getServiceId().getName().startsWith("Vorbau")) {
                         String command = event.getData().getString("command");
-                        UUID leader = UUID.fromString(event.getData().getString("leader"));
                         if (command.equals("create")) {
+                            UUID leader = UUID.fromString(event.getData().getString("leader"));
                             boolean publicParty = event.getData().getBoolean("publicParty");
 
                             PartyAPI.getInstance().createParty(leader, publicParty);
                         } else if (command.equals("add")) {
+                            UUID leader = UUID.fromString(event.getData().getString("leader"));
                             UUID uuid = UUID.fromString(event.getData().getString("uuid"));
 
                             PartyAPI.getInstance().getParty(leader).addPlayer(uuid);
                         } else if (command.equals("remove")) {
+                            UUID leader = UUID.fromString(event.getData().getString("leader"));
                             UUID uuid = UUID.fromString(event.getData().getString("uuid"));
 
                             PartyAPI.getInstance().getParty(leader).removePlayer(uuid);
                         } else if (command.equals("leader")) {
+                            UUID leader = UUID.fromString(event.getData().getString("leader"));
                             UUID uuid = UUID.fromString(event.getData().getString("uuid"));
 
                             PartyAPI.getInstance().getParty(leader).setLeader(uuid);
                         } else if (command.equals("delete")) {
+                            UUID leader = UUID.fromString(event.getData().getString("leader"));
                             PartyAPI.getInstance().deleteParty(leader);
                         }
                     }
@@ -95,6 +99,16 @@ public class ChannelMessageReceiveListener {
                     int version = event.getData().getInt("versions");
 
                     new Version(uuid, version);
+                } else if (event.getMessage().equals("badlion")) {
+                    UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                    if (!EnderAPI.getInstance().getBadlion().contains(uuid)) {
+                        EnderAPI.getInstance().getBadlion().add(uuid);
+                    }
+                } else if (event.getMessage().equals("proxydisconnect")) {
+                    UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                    if (EnderAPI.getInstance().getBadlion().contains(uuid)) {
+                        EnderAPI.getInstance().getBadlion().remove(uuid);
+                    }
                 }
             } else if (event.getChannel().equalsIgnoreCase("enderkomplex")) {
                 if (event.getMessage().equalsIgnoreCase("pluginmessage")) {

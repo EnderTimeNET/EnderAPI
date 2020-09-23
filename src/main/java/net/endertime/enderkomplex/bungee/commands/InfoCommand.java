@@ -2,6 +2,7 @@ package net.endertime.enderkomplex.bungee.commands;
 
 import java.util.ArrayList;
 
+import net.endertime.enderapi.bungee.api.EnderAPI;
 import net.endertime.enderkomplex.bungee.core.ProxyHandler;
 import net.endertime.enderkomplex.bungee.enums.PluginMessage;
 import net.endertime.enderkomplex.bungee.utils.InfoCollector;
@@ -32,7 +33,7 @@ public class InfoCommand extends Command {
                 cb.append("§7Ländertracker§8: ").append(InfoCollector.getCountries()).append("§r\n").event((HoverEvent) null);
                 cb.append("§7Statistiken§8: §5CPM§8: §c" + InfoCollector.cpm.size() + " §8┃ §5PPM§8: §c" + InfoCollector.ppm.size()
                         + " §8┃ §5UPC§8: §c" + InfoCollector.upc.size() + " §8┃ §5TPC§8: §c" + InfoCollector.tpc).append("§r\n");
-                cb.append("§7Modcounter§8: §9LM§8: §c" + InfoCollector.labymod.size() + " §8┃ §9BC§8: §c" + InfoCollector.badlion.size()
+                cb.append("§7Modcounter§8: §9LM§8: §c" + InfoCollector.labymod.size() + " §8┃ §9BC§8: §c" + EnderAPI.getInstance().getBadlion().size()
                         + " §8┃ §9F§8: §c" + InfoCollector.forge.size() + "§r\n");
                 if(topservers.isEmpty()) {
                     cb.append("§7Topserver§8: ").append("§r\n");

@@ -991,7 +991,7 @@ public class EnderAPI {
     }
 
     public boolean isInTeam (Player player) {
-        if (player.hasPermission("teamserver.join"))
+        if (!player.hasPermission("teamserver.join"))
             return false;
         return true;
     }
@@ -1064,7 +1064,7 @@ public class EnderAPI {
         final EntityPlayer entityPlayer = new EntityPlayer(minecraftServer, worldServer, gameProfile, new PlayerInteractManager(worldServer));
 
         PacketPlayOutPlayerInfo packetPlayOutPlayerInfo = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER,
-                new EntityPlayer[]{entityPlayer});
+                entityPlayer);
         (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(packetPlayOutPlayerInfo);
 
         packetPlayOutPlayerInfo = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_DISPLAY_NAME,
@@ -1086,9 +1086,25 @@ public class EnderAPI {
         PacketPlayOutNamedEntitySpawn entitySpawnPacket = new PacketPlayOutNamedEntitySpawn(((CraftPlayer)show).getHandle());
         PacketPlayOutPlayerInfo playerInfoAddPacket = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER,
                 ((CraftPlayer)show).getHandle());
+        PacketPlayOutEntityEquipment entityEquipmentPacketHelmet = new PacketPlayOutEntityEquipment
+                (((((CraftPlayer) show).getHandle()).getId()),
+                        EnumItemSlot.HEAD, (((CraftPlayer)show).getHandle()).getEquipment(EnumItemSlot.HEAD));
+        PacketPlayOutEntityEquipment entityEquipmentPacketChest = new PacketPlayOutEntityEquipment
+                (((((CraftPlayer) show).getHandle()).getId()),
+                        EnumItemSlot.CHEST, (((CraftPlayer)show).getHandle()).getEquipment(EnumItemSlot.CHEST));
+        PacketPlayOutEntityEquipment entityEquipmentPacketLeggings = new PacketPlayOutEntityEquipment
+                (((((CraftPlayer) show).getHandle()).getId()),
+                        EnumItemSlot.LEGS, (((CraftPlayer)show).getHandle()).getEquipment(EnumItemSlot.LEGS));
+        PacketPlayOutEntityEquipment entityEquipmentPacketBoots = new PacketPlayOutEntityEquipment
+                (((((CraftPlayer) show).getHandle()).getId()),
+                        EnumItemSlot.FEET, (((CraftPlayer)show).getHandle()).getEquipment(EnumItemSlot.FEET));
 
         (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(playerInfoAddPacket);
         (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entitySpawnPacket);
+        (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entityEquipmentPacketHelmet);
+        (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entityEquipmentPacketChest);
+        (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entityEquipmentPacketLeggings);
+        (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entityEquipmentPacketBoots);
     }
 
     public List<Player> getNoActionbar() {

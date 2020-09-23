@@ -98,8 +98,10 @@ public class Reset_Command implements CommandExecutor, Listener {
                         Inventory inventory = EnderAPI.getInstance().getInventory(Bukkit.createInventory(null, InventoryType.HOPPER, "§7Statsreset von "
                                 + EnderAPI.getInstance().getPrefix(uuid) + EnderAPI.getInstance().getName(uuid)));
 
-                        inventory.setItem(1, EnderAPI.getInstance().getItem(Material.EMERALD_BLOCK).setDisplayName("§7Alle Stats §cresetten").getItemStack());
-                        inventory.setItem(3, EnderAPI.getInstance().getItem(Material.REDSTONE_BLOCK).setDisplayName("§7Keine Stats §cresetten").getItemStack());
+                        inventory.setItem(1, EnderAPI.getInstance().getItem(Material.EMERALD_BLOCK)
+                                .setDisplayName("§7Alle Stats §cresetten").getItemStack());
+                        inventory.setItem(3, EnderAPI.getInstance().getItem(Material.REDSTONE_BLOCK).
+                                setDisplayName("§7Keine Stats §cresetten").getItemStack());
 
                         player.openInventory(inventory);
                     } else {

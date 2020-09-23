@@ -18,7 +18,7 @@ public class PostLoginListener implements Listener {
     public void onLogin(PostLoginEvent event) {
         final ProxiedPlayer player = event.getPlayer();
 
-        EnderAPI.getInstance().getFriend().getSettings().createUser(player.getUniqueId(), player.getServer().getInfo().getName());
+        EnderAPI.getInstance().getFriend().getSettings().createUser(player.getUniqueId(), "Lobby-1");
 
         if (EnderAPI.getInstance().getNickDatabase().isUserExist(player.getUniqueId())) {
             String nickName = EnderAPI.getInstance().getNickDatabase().getName(player.getUniqueId());
@@ -48,5 +48,6 @@ public class PostLoginListener implements Listener {
         }
 
         ClanAPI.getInstance().getSettings().createUser(player.getUniqueId(), player.getName());
+        EnderAPI.getInstance().getFriend().getSettings().updateOnline(player.getUniqueId(), true);
     }
 }

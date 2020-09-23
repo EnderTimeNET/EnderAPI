@@ -25,52 +25,6 @@ import java.util.UUID;
 
 public class CreateSkulls {
 
-    public static String getValue(UUID uuid) throws IOException, ParseException {
-        JSONParser parser = new JSONParser();
-        URL url = new URL("https://sessionserver.mojang.com/session/minecraft/profile/"
-                + uuid.toString().replaceAll("-", "") + "?unsigned=false");
-        URLConnection con = url.openConnection();
-        con.setUseCaches(false);
-        con.setDefaultUseCaches(false);
-        con.addRequestProperty("User-Agent", "Mozilla/5.0");
-        con.addRequestProperty("Cache-Control", "no-cache, no-store, must-revalidate");
-        con.addRequestProperty("Pragma", "no-cache");
-        InputStream in = con.getInputStream();
-        String encoding = con.getContentEncoding();
-        encoding = encoding == null ? "UTF-8" : encoding;
-        String json = IOUtils.toString(in, encoding);
-        Object obj = parser.parse(json);
-        JSONArray properties = (JSONArray) ((JSONObject) obj).get("properties");
-        for (int i = 0; i < properties.size(); i++) {
-            JSONObject property = (JSONObject) properties.get(i);
-            return (String) property.get("value");
-        }
-        return null;
-    }
-
-    public static String getSignature(UUID uuid) throws IOException, ParseException {
-        JSONParser parser = new JSONParser();
-        URL url = new URL("https://sessionserver.mojang.com/session/minecraft/profile/"
-                + uuid.toString().replaceAll("-", "") + "?unsigned=false");
-        URLConnection con = url.openConnection();
-        con.setUseCaches(false);
-        con.setDefaultUseCaches(false);
-        con.addRequestProperty("User-Agent", "Mozilla/5.0");
-        con.addRequestProperty("Cache-Control", "no-cache, no-store, must-revalidate");
-        con.addRequestProperty("Pragma", "no-cache");
-        InputStream in = con.getInputStream();
-        String encoding = con.getContentEncoding();
-        encoding = encoding == null ? "UTF-8" : encoding;
-        String json = IOUtils.toString(in, encoding);
-        Object obj = parser.parse(json);
-        JSONArray properties = (JSONArray) ((JSONObject) obj).get("properties");
-        for (int i = 0; i < properties.size(); i++) {
-            JSONObject property = (JSONObject) properties.get(i);
-            return (String) property.get("signature");
-        }
-        return null;
-    }
-
     public static ItemStack createSkull(String name) {
 
         UUID uuid = EnderAPI.getInstance().getEnderDatabase().getUUID(name);
@@ -78,7 +32,7 @@ public class CreateSkulls {
         ItemStack head = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
 
         SkullMeta headMeta = (SkullMeta) head.getItemMeta();
-        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+        GameProfile profile = new GameProfile(uuid, EnderAPI.getInstance().getEnderDatabase().getName(uuid));
 
         profile.getProperties().put("textures", new Property("textures", EnderAPI.getInstance().getEnderDatabase().getValue(uuid)));
 
@@ -105,7 +59,7 @@ public class CreateSkulls {
         ItemStack head = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
 
         SkullMeta headMeta = (SkullMeta) head.getItemMeta();
-        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+        GameProfile profile = new GameProfile(uuid, EnderAPI.getInstance().getEnderDatabase().getName(uuid));
 
         profile.getProperties().put("textures", new Property("textures", EnderAPI.getInstance().getEnderDatabase().getValue(uuid)));
 

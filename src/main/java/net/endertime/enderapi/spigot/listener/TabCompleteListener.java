@@ -16,7 +16,10 @@ public class TabCompleteListener implements Listener {
     public void onTab (TabCompleteEvent event) {
         Player player = (Player) event.getSender();
         if (commands.contains(event.getBuffer())) {
-            event.getCompletions().clear();
+            if (event.getCompletions() != null) {
+                if (!event.getCompletions().isEmpty())
+                    event.getCompletions().clear();
+            }
         } else {
             for (Player nicked : NickAPI.getInstance().getNickedPlayer().keySet()) {
                 Nick nick = NickAPI.getInstance().getNick(nicked);

@@ -27,19 +27,27 @@ public class ChannelMessageReceiveListener {
         if (event.getMessage() != null) {
             if (event.getChannel().equalsIgnoreCase("enderapi")) {
                 String command = event.getData().getString("command");
-                UUID uuid = UUID.fromString(event.getData().getString("uuid"));
-                UUID targetUUID = UUID.fromString(event.getData().getString("target"));
-                ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
                 if (event.getMessage().equalsIgnoreCase("friend")) {
                     if (command.equalsIgnoreCase("add")) {
+                        UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
+                        UUID targetUUID = UUID.fromString(event.getData().getString("target"));
                         if (ProxyServer.getInstance().getPlayer(targetUUID) != null) {
                             friend.addRequests(player, ProxyServer.getInstance().getPlayer(targetUUID));
                         }
                     } else if (command.equals("deny")) {
+                        UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
+                        UUID targetUUID = UUID.fromString(event.getData().getString("target"));
                         friend.denyRequests(player, targetUUID);
                     } else if (command.equals("accept")) {
+                        UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
+                        UUID targetUUID = UUID.fromString(event.getData().getString("target"));
                         friend.addFriend(player, targetUUID);
                     } else if (command.equals("denyall")) {
+                        UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
                         List<UUID> requests = friend.getRequests().getRequests(player.getUniqueId());
 
                         for (UUID uuids : requests) {
@@ -58,6 +66,8 @@ public class ChannelMessageReceiveListener {
                                     .getMessage(EnderAPI.getInstance().getPrefixFriend() + "§7Du hast alle Freundschaftsanfragen §cabgelehnt"));
                         }
                     } else if (command.equals("acceptall")) {
+                        UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
                         List<UUID> requests = friend.getRequests().getRequests(player.getUniqueId());
 
                         for (UUID uuids : requests) {
@@ -76,10 +86,18 @@ public class ChannelMessageReceiveListener {
                                     .getMessage(EnderAPI.getInstance().getPrefixFriend() + "§7Du hast alle Freundschaftsanfragen §aangenommen"));
                         }
                     } else if (command.equals("remove")) {
+                        UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
+                        UUID targetUUID = UUID.fromString(event.getData().getString("target"));
                         friend.deleteFriend(player, targetUUID);
                     } else if (command.equals("jump")) {
+                        UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
+                        UUID targetUUID = UUID.fromString(event.getData().getString("target"));
                         friend.jump(player, targetUUID);
                     } else if (command.equals("clear")) {
+                        UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
                         List<UUID> list = friend.getFriends().getFriends(player.getUniqueId());
 
                         for (UUID uuids : list) {
@@ -91,6 +109,8 @@ public class ChannelMessageReceiveListener {
                     }
                 } else if (event.getMessage().equalsIgnoreCase("party")) {
                     if (command.equals("invite")) {
+                        UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
                         if (partyManager.createParty(player, false)) {
                             PlayerParty playerParty = partyManager.getParty(player);
                             if (playerParty.isLeader(player)) {
@@ -112,6 +132,7 @@ public class ChannelMessageReceiveListener {
                                 }
 
                                 try {
+                                    UUID targetUUID = UUID.fromString(event.getData().getString("target"));
                                     ProxiedPlayer target = ProxyServer.getInstance().getPlayer(targetUUID);
                                     if (partyManager.getParty(target) == null) {
                                         if (friend.getSettings().getPartyToggle(target.getUniqueId()) == 0
@@ -141,6 +162,7 @@ public class ChannelMessageReceiveListener {
                                 player.sendMessage(partyManager.getMessage(partyManager.getPrefix() + "§7Du bist §cnicht §7er Partyleiter"));
                             }
                         } else {
+                            UUID targetUUID = UUID.fromString(event.getData().getString("target"));
                             ProxiedPlayer target = ProxyServer.getInstance().getPlayer(targetUUID);
                             PlayerParty playerParty = partyManager.getParty(player);
                             if (target != null) {
@@ -172,12 +194,15 @@ public class ChannelMessageReceiveListener {
                     }
                 } else if (event.getMessage().equals("clan")) {
                     if (command.equals("invite")) {
+                        UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
                         if (ClanAPI.getInstance().getMember().isUserExists(player.getUniqueId())) {
                             String tag = ClanAPI.getInstance().getMember().getTag(player.getUniqueId());
                             if (ClanAPI.getInstance().getMember().getRang(player.getUniqueId()) == 1 ||
                                     ClanAPI.getInstance().getPermissions().hasPerm(tag, ClanAPI.getInstance().getMember().getRang(player.getUniqueId()),
                                             "clan.invite")) {
                                 if (ClanAPI.getInstance().getClans().getMember(tag) > ClanAPI.getInstance().getClan(tag).getAllMembers().size()) {
+                                    UUID targetUUID = UUID.fromString(event.getData().getString("target"));
 
                                     if (ProxyServer.getInstance().getPlayer(targetUUID) != null) {
                                         ProxiedPlayer target = ProxyServer.getInstance().getPlayer(targetUUID);
@@ -290,6 +315,10 @@ public class ChannelMessageReceiveListener {
                                     " §6Clan"));
                         }
                     }
+                } else if (event.getMessage().equals("badlion")) {
+                    UUID uuid = UUID.fromString(event.getData().getString("uuid"));
+                    if (!EnderAPI.getInstance().getBadlion().contains(uuid))
+                        EnderAPI.getInstance().getBadlion().add(uuid);
                 }
             }
         }

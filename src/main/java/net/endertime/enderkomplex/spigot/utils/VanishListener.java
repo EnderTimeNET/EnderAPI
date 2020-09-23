@@ -25,24 +25,17 @@ public class VanishListener implements Listener {
         if(reducedVanish.contains(p.getName())) {
             e.setJoinMessage(null);
             Bukkit.getOnlinePlayers().forEach(online -> {
-                if(!online.hasPermission("teamserver.join")) {
+                if(!online.hasPermission("ek.commands.vanish")) {
                     EnderAPI.getInstance().hidePlayer(online, p);
                 }
             });
             p.setGameMode(GameMode.SPECTATOR);
-            Bukkit.getScheduler().scheduleSyncDelayedTask(ServerData.Instance, new Runnable() {
-
-                @Override
-                public void run() {
-                    p.setGameMode(GameMode.SPECTATOR);
-
-                }
-            }, 20);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(ServerData.Instance, () -> p.setGameMode(GameMode.SPECTATOR), 20);
         }
 
         if(!VanishCommand.vanished.isEmpty()) {
             VanishCommand.vanished.keySet().forEach(v -> {
-                if(!p.hasPermission("teamserver.join")) {
+                if(!p.hasPermission("ek.commands.vanish")) {
                     EnderAPI.getInstance().hidePlayer(p, v);
                 }
             });
@@ -51,7 +44,7 @@ public class VanishListener implements Listener {
         if(!reducedVanish.isEmpty()) {
             reducedVanish.forEach(vname -> {
                 Player v = Bukkit.getPlayer(vname);
-                if(!p.hasPermission("teamserver.join")) {
+                if(!p.hasPermission("ek.commands.vanish")) {
                     EnderAPI.getInstance().hidePlayer(p, v);
                 }
             });

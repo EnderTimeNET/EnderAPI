@@ -74,7 +74,7 @@ public class PartyManager {
                 ChannelMessage.builder()
                         .channel("enderapi")
                         .message("party")
-                        .json(JsonDocument.newDocument().append("command", "add").append("delete", p.getUniqueId().toString()))
+                        .json(JsonDocument.newDocument().append("command", "delete").append("leader", p.getUniqueId().toString()))
                         .targetAll()
                         .build()
                         .send();

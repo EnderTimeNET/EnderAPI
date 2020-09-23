@@ -1,5 +1,7 @@
 package net.endertime.enderapi.bungee.listener;
 
+import de.dytanic.cloudnet.common.document.gson.JsonDocument;
+import de.dytanic.cloudnet.driver.channel.ChannelMessage;
 import net.endertime.enderapi.bungee.api.EnderAPI;
 import net.endertime.enderapi.bungee.utils.PlayerParty;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -12,6 +14,9 @@ public class PlayerDisconnectListener implements Listener {
     @EventHandler
     public void onDisconnect(PlayerDisconnectEvent event) {
         ProxiedPlayer player = event.getPlayer();
+
+        EnderAPI.getInstance().getFriend().getSettings().updateOnline(player.getUniqueId(), false);
+        EnderAPI.getInstance().getFriend().getSettings().updateLastOnline(player.getUniqueId());
 
         if (EnderAPI.getInstance().getPartyManager().getParty(player) != null) {
             PlayerParty party = EnderAPI.getInstance().getPartyManager().getParty(player);
@@ -33,5 +38,13 @@ public class PlayerDisconnectListener implements Listener {
                 }
             }
         }
+
+        ChannelMessage.builder()
+                .channel("enderapi")
+                .message("proxydisconnect")
+                .json(JsonDocument.newDocument().append("uuid", player.getUniqueId()))
+                .targetAll()
+                .build()
+                .send();
     }
 }

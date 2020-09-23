@@ -13,6 +13,7 @@ import de.dytanic.cloudnet.driver.CloudNetDriver;
 import de.dytanic.cloudnet.wrapper.Wrapper;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import net.endertime.enderapi.spigot.listener.ChannelMessageReceiveListener;
 import net.endertime.enderapi.clan.ClanAPI;
 import net.endertime.enderapi.database.databaseapi.DataBaseAPI;
 import net.endertime.enderapi.spigot.api.EnderAPI;
@@ -20,6 +21,7 @@ import net.endertime.enderapi.spigot.api.NickAPI;
 import net.endertime.enderapi.spigot.api.PermAPI;
 import net.endertime.enderapi.spigot.commands.*;
 import net.endertime.enderapi.spigot.listener.*;
+import net.endertime.enderapi.spigot.utils.Group;
 import net.endertime.enderkomplex.spigot.commands.*;
 import net.endertime.enderkomplex.spigot.core.ServerData;
 import net.endertime.enderkomplex.spigot.objects.InfoFeed;
@@ -101,6 +103,7 @@ public class Spigot extends JavaPlugin {
             AFKTimer.startTimer();
             new InfoFeed(this);
             registerNicks();
+            Group.fillGroups();
         }
     }
 
@@ -118,14 +121,18 @@ public class Spigot extends JavaPlugin {
     private void registerEvents(final PluginManager pm) {
         pm.registerEvents(new AsyncPlayerChatListener(), this);
         pm.registerEvents(new net.endertime.enderapi.spigot.listener.PlayerJoinListener(), this);
-        pm.registerEvents(new PlayerQuitListener(), this);
+        pm.registerEvents(new Rank_Command(), this);
+        pm.registerEvents(new Reset_Command(), this);
 
 
         if (CloudNetDriver.getInstance().getCloudServiceProvider().getCloudServiceByName("Proxy-1").getAddress().getPort() == 25565) {
+            CloudNetDriver.getInstance().getEventManager().registerListener(new ChannelMessageReceiveListener());
+
             pm.registerEvents(new BadlionListener(), this);
             pm.registerEvents(new Restart_Command(), this);
             pm.registerEvents(new PlayerChatTabCompleteListener(), this);
             pm.registerEvents(new PlayerLoginListener(), this);
+            pm.registerEvents(new PlayerQuitListener(), this);
             pm.registerEvents(new TabCompleteListener(), this);
             pm.registerEvents(new net.endertime.enderkomplex.spigot.utils.VanishListener(), this);
 
@@ -150,6 +157,7 @@ public class Spigot extends JavaPlugin {
         getCommand("removecoins").setExecutor(new RemoveCoins_Command());
         getCommand("resetcoins").setExecutor(new ResetCoins_Command());
         getCommand("perm").setExecutor(new Perm_Command());
+        getCommand("seeperm").setExecutor(new SeePerm_Command());
         getCommand("rank").setExecutor(new Rank_Command());
         getCommand("reset").setExecutor(new Reset_Command());
         /*getCommand("checknick").setExecutor(new CheckNick_Command());

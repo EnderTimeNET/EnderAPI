@@ -1,5 +1,6 @@
 package net.endertime.enderapi.spigot.listener;
 
+import de.dytanic.cloudnet.wrapper.Wrapper;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderapi.spigot.api.GameAPI;
 import net.endertime.enderapi.spigot.api.NickAPI;
@@ -21,7 +22,10 @@ public class PlayerLoginListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onLogin(PlayerLoginEvent event) {
         final Player player = event.getPlayer();
-        if (EnderAPI.getInstance().getVanishUUID().contains(player.getUniqueId())) {
+        if (Wrapper.getInstance().getServiceId().getName().contains("Lobby")) {
+            EnderAPI.getInstance().getEnderDatabase().updateOnJoin(player);
+        } else if (EnderAPI.getInstance().getVanishUUID().contains(player.getUniqueId())
+                || EnderAPI.getInstance().getVanish().contains(player)) {
             EnderAPI.getInstance().getVanish().add(player);
             event.allow();
         } else {
@@ -48,12 +52,14 @@ public class PlayerLoginListener implements Listener {
             }
 
             if (NickAPI.getInstance().isNickAvailable()) {
-                Nick nick = new Nick(player);
-                if (NickAPI.getInstance().getNickedPlayer().containsKey(player)) {
-                    NickAPI.getInstance().getNickedPlayer().remove(player);
+                if (EnderAPI.getInstance().getTeamDatabase().isState(player.getUniqueId())) {
+                    Nick nick = new Nick(player);
+                    if (NickAPI.getInstance().getNickedPlayer().containsKey(player)) {
+                        NickAPI.getInstance().getNickedPlayer().remove(player);
+                    }
+                    NickAPI.getInstance().getNickedPlayer().put(player, nick);
+                    NickAPI.getInstance().getNickedParty().put(player.getUniqueId(), new ArrayList<>());
                 }
-                NickAPI.getInstance().getNickedPlayer().put(player, nick);
-                NickAPI.getInstance().getNickedParty().put(player.getUniqueId(), new ArrayList<>());
             }
 
         }

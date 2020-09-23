@@ -69,7 +69,6 @@ public class InfoCollector implements Listener {
     private static HashMap<Version, ArrayList<UUID>> versionCount = new HashMap<>();
     private static ArrayList<String> countries = new ArrayList<>();
     public static ArrayList<String> labymod = new ArrayList<>();
-    public static ArrayList<String> badlion = new ArrayList<>();
     public static ArrayList<String> forge = new ArrayList<>();
     public static int bans = 0, mutes = 0, reports = 0, chatfilter = 0, tpc = 0, joinmes = 0;
     public static ArrayList<String> ppm = new ArrayList<>();
@@ -243,16 +242,6 @@ public class InfoCollector implements Listener {
         if(e.getTag().equals("LMC")) {
             if(!labymod.contains(ip)) {
                 labymod.add(ip);
-            }
-        } else if(e.getTag().equals("BungeeCord")) {
-            DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(e.getData()));
-            try {
-                if (dataInputStream.readUTF().equals("heartbeat")) {
-                    if(!badlion.contains(ip)) {
-                        badlion.add(ip);
-                    }
-                }
-            } catch (IOException error) {
             }
         }
     }

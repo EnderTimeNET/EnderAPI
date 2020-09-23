@@ -64,20 +64,25 @@ public class PermAPI {
     }
 
     public boolean hasPermission (UUID uuid, String permission) {
-        if (permissions.get(uuid).contains("*")) {
-            return true;
-        } else if (permissions.get(uuid).contains("-" + permission)) {
-            return false;
-        } else if (permissions.get(uuid).contains(permission)) {
-            return true;
-        } else {
-            String[] split = permission.split("\\.");
-            String newPerm = "";
-            for (int i = 0; i < split.length - 1; i++) {
-                newPerm = newPerm + split[i] + ".";
-                if (permissions.get(uuid).contains(newPerm + "*"))
-                    return true;
+        if (permissions.get(uuid) != null) {
+            if (permissions.get(uuid).contains("*")) {
+                return true;
+            } else if (permissions.get(uuid).contains("-" + permission)) {
+                return false;
+            } else if (permissions.get(uuid).contains(permission)) {
+                return true;
+            } else {
+                String[] split = permission.split("\\.");
+                String newPerm = "";
+                for (int i = 0; i < split.length - 1; i++) {
+                    newPerm = newPerm + split[i] + ".";
+                    if (permissions.get(uuid).contains(newPerm + "*"))
+                        return true;
+                }
             }
+        } else {
+            return PermAPI.getInstance().getUserPermissions().getPerms(uuid, PermAPI.getInstance().getRankPermissions()
+                    .getPerms(PermAPI.getInstance().getUsers().getRank(uuid))).contains(permission);
         }
 
         return false;

@@ -61,10 +61,12 @@ public class Restart_Command implements CommandExecutor, Listener {
                 for (int i = 0; i < inventory.getSize(); i++) {
                     if (inventory.getItem(i) != null) {
                         if (inventory.getItem(i).getType().equals(Material.AIR)) {
-                            inventory.setItem(i, EnderAPI.getInstance().getItem(Material.STAINED_GLASS_PANE, 1, 15).setDisplayName("§1").getItemStack());
+                            inventory.setItem(i, EnderAPI.getInstance().getItem(Material.STAINED_GLASS_PANE, 1, 15)
+                                    .setDisplayName("§1").getItemStack());
                         }
                     } else {
-                        inventory.setItem(i, EnderAPI.getInstance().getItem(Material.STAINED_GLASS_PANE, 1, 15).setDisplayName("§1").getItemStack());
+                        inventory.setItem(i, EnderAPI.getInstance().getItem(Material.STAINED_GLASS_PANE, 1, 15)
+                                .setDisplayName("§1").getItemStack());
                     }
                 }
 

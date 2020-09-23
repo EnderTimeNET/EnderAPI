@@ -161,6 +161,9 @@ public class ChatBlacklist {
         blacklist.add("verfickt");
         blacklist.add("fuck");
         blacklist.add("negger");
+        blacklist.add("missit");
+        blacklist.add("nutte");
+        blacklist.add("huan");
     }
 
 }
