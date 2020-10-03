@@ -187,6 +187,7 @@ public class Spigot extends JavaPlugin {
             getCommand("eb").setExecutor(new EditBanCommand());
             getCommand("apply").setExecutor(new ApplyCommand());
             getCommand("verify").setExecutor(new VerifyCommand());
+            getCommand("unverify").setExecutor(new UnverifyCommand());
         }
     }
 

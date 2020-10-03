@@ -33,3 +33,4 @@ commands:
   apply:
   joinme:
   verify:
+  unverify:

@@ -1555,6 +1555,13 @@ public class Database {
         mysql.runAsyncUpdate(ps);
     }
 
+    public static void updateRanksSpigot(UUID uuid, String rank) {
+        PreparedStatement ps = new PreparedStatement("UPDATE TEAMSPEAKBOT SET RANKS = ? WHERE UUID = ?");
+        ps.setString(1, rank);
+        ps.setString(2, uuid.toString());
+        mysql.runAsyncUpdate(ps);
+    }
+
     private static String getRank(UUID uuid) {
         String rank = PermAPI.getInstance().getGroup(uuid);
         if(rank.equalsIgnoreCase("default")) rank = "Spieler";
