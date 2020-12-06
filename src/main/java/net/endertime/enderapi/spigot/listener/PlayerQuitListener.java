@@ -5,12 +5,8 @@ import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderapi.spigot.api.GameAPI;
 import net.endertime.enderapi.spigot.api.NickAPI;
 import net.endertime.enderapi.spigot.utils.State;
-import net.minecraft.server.v1_12_R1.MinecraftServer;
-import net.minecraft.server.v1_12_R1.WorldServer;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -35,6 +31,7 @@ public class PlayerQuitListener implements Listener {
                         if (all.getGameMode().equals(GameMode.SPECTATOR)) {
                             if (NickAPI.getInstance().couldSee(player, all)) {
                                 all.sendMessage("§8[§4-§8] §7" + NickAPI.getInstance().getNick(player).getNickedName());
+                                EnderAPI.getInstance().removeOnTablist(all, NickAPI.getInstance().getNick(player).getNickedProfile());
                             } else {
                                 all.sendMessage("§8[§4-§8] §7" + NickAPI.getInstance().getNick(player).getName());
                             }
@@ -56,6 +53,7 @@ public class PlayerQuitListener implements Listener {
                     for (Player all : Bukkit.getOnlinePlayers()) {
                         if (NickAPI.getInstance().couldSee(player, all)) {
                             all.sendMessage("§8[§4-§8] §7" + NickAPI.getInstance().getNick(player).getNickedName());
+                            EnderAPI.getInstance().removeOnTablist(all, NickAPI.getInstance().getNick(player).getNickedProfile());
                         } else {
                             all.sendMessage("§8[§4-§8] §7" + NickAPI.getInstance().getNick(player).getName());
                         }

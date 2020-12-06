@@ -10,7 +10,6 @@ import net.endertime.enderapi.spigot.api.GameAPI;
 import net.endertime.enderapi.spigot.utils.State;
 import net.endertime.enderkomplex.mysql.Database;
 import net.endertime.enderkomplex.spigot.core.ServerData;
-import net.endertime.enderkomplex.spigot.core.ServerHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -21,17 +20,13 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import net.minecraft.server.v1_12_R1.EntityArmorStand;
 
 public class AFKTimer implements Listener {
 
     private static HashMap<Player, Long> afkTime = new HashMap<>();
     private static HashMap<Player, Long> lastTime = new HashMap<>();
     private static HashMap<Player, Location> lastLocation = new HashMap<>();
-    private static HashMap<Player, EntityArmorStand> holograms = new HashMap<>();
     private static ArrayList<Player> afkplayers = new ArrayList<>();
 
     public static void startTimer() {
@@ -49,30 +44,16 @@ public class AFKTimer implements Listener {
                                     } else {
                                         long afktime = System.currentTimeMillis() - afkTime.get(online);
                                         if(afktime >= 60000) {
-                                            EntityArmorStand eas = null;
-                                            if(!holograms.containsKey(online)) {
-                                                eas = ServerHandler.createPacketHologram("§8× §e§oAFK seit einer Minute §8×",
-                                                        online.getEyeLocation().add(0, 0.9, 0));
-                                                holograms.put(online, eas);
-                                            } else {
-                                                eas = holograms.get(online);
-                                            }
                                             if(afktime >= 3600000) {
                                                 if(afktime >= 7200000) {
                                                     //2h oder mehr
                                                     long hours = TimeUnit.MILLISECONDS.toHours(afktime);
                                                     if(lastTime.get(online) != hours) {
-                                                        eas.setCustomName("§8× §e§oAFK seit über " + TimeUnit.MILLISECONDS.toHours(afktime) + " Stunden §8×");
-                                                        ServerHandler.destroyHologram(eas);
-                                                        ServerHandler.showHologram(eas);
                                                         lastTime.put(online, hours);
                                                     }
                                                 } else {
                                                     //1h
                                                     if(lastTime.get(online) != 1l) {
-                                                        eas.setCustomName("§8× §e§oAFK seit über einer Stunde §8×");
-                                                        ServerHandler.destroyHologram(eas);
-                                                        ServerHandler.showHologram(eas);
                                                         lastTime.put(online, 1l);
                                                     }
                                                 }
@@ -81,9 +62,6 @@ public class AFKTimer implements Listener {
                                                     //2min oder mehr
                                                     long minutes = TimeUnit.MILLISECONDS.toMinutes(afktime);
                                                     if(lastTime.get(online) != minutes) {
-                                                        eas.setCustomName("§8× §e§oAFK seit " + minutes + " Minuten §8×");
-                                                        ServerHandler.destroyHologram(eas);
-                                                        ServerHandler.showHologram(eas);
                                                         lastTime.put(online, minutes);
                                                     }
                                                     if (minutes >= 5) {
@@ -99,7 +77,6 @@ public class AFKTimer implements Listener {
                                                 } else {
                                                     //1min
                                                     if(!lastTime.containsKey(online)) {
-                                                        eas.setCustomName("§8× §e§oAFK seit einer Minute §8×");
                                                         lastTime.put(online, 1l);
                                                         if(!afkplayers.contains(online)) {
                                                             afkplayers.add(online);
@@ -131,10 +108,6 @@ public class AFKTimer implements Listener {
                         if(!ll.getLocation().equals(lastLocation.get(ll))) {
                             lastLocation.remove(ll);
                             afkTime.remove(ll);
-                            if(holograms.containsKey(ll)) {
-                                ServerHandler.destroyHologram(holograms.get(ll));
-                                holograms.remove(ll);
-                            }
                             if(afkplayers.contains(ll)) {
                                 Database.setLastSave(ll.getUniqueId());
                             }
@@ -150,13 +123,6 @@ public class AFKTimer implements Listener {
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
-        Player p = e.getPlayer();
-
-        holograms.values().forEach(holo -> ServerHandler.showHologram(p, holo));
-    }
-
-    @EventHandler
     public void onQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
 
@@ -166,10 +132,6 @@ public class AFKTimer implements Listener {
                     if(p.getLocation().equals(lastLocation.get(p))) {
                         lastLocation.remove(p);
                         afkTime.remove(p);
-                        if(holograms.containsKey(p)) {
-                            ServerHandler.destroyHologram(holograms.get(p));
-                            holograms.remove(p);
-                        }
                         if(afkplayers.contains(p)) {
                             Database.setLastSave(p.getUniqueId());
                         }
@@ -191,10 +153,6 @@ public class AFKTimer implements Listener {
                     if(p.getLocation().equals(lastLocation.get(p))) {
                         lastLocation.remove(p);
                         afkTime.remove(p);
-                        if(holograms.containsKey(p)) {
-                            ServerHandler.destroyHologram(holograms.get(p));
-                            holograms.remove(p);
-                        }
                         if(afkplayers.contains(p)) {
                             Database.setLastSave(p.getUniqueId());
                         }
@@ -216,10 +174,6 @@ public class AFKTimer implements Listener {
                     if(p.getLocation().equals(lastLocation.get(p))) {
                         lastLocation.remove(p);
                         afkTime.remove(p);
-                        if(holograms.containsKey(p)) {
-                            ServerHandler.destroyHologram(holograms.get(p));
-                            holograms.remove(p);
-                        }
                         if(afkplayers.contains(p)) {
                             Database.setLastSave(p.getUniqueId());
                         }
@@ -247,10 +201,6 @@ public class AFKTimer implements Listener {
                     if(p.getLocation().equals(lastLocation.get(p))) {
                         lastLocation.remove(p);
                         afkTime.remove(p);
-                        if(holograms.containsKey(p)) {
-                            ServerHandler.destroyHologram(holograms.get(p));
-                            holograms.remove(p);
-                        }
                         if(afkplayers.contains(p)) {
                             Database.setLastSave(p.getUniqueId());
                         }
@@ -272,10 +222,6 @@ public class AFKTimer implements Listener {
                     if(p.getLocation().equals(lastLocation.get(p))) {
                         lastLocation.remove(p);
                         afkTime.remove(p);
-                        if(holograms.containsKey(p)) {
-                            ServerHandler.destroyHologram(holograms.get(p));
-                            holograms.remove(p);
-                        }
                         if(afkplayers.contains(p)) {
                             Database.setLastSave(p.getUniqueId());
                         }

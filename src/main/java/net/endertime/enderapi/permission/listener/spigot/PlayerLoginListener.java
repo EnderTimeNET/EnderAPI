@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.PermissionAttachment;
 
 import java.lang.reflect.Field;
@@ -35,5 +36,12 @@ public class PlayerLoginListener implements Listener {
             f.setAccessible(false);
         } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ignore) {
         }
+    }
+
+    @EventHandler
+    public void onDisconnect(PlayerQuitEvent event) {
+        final Player player = event.getPlayer();
+
+        PermAPI.getInstance().getPermissions().remove(player.getUniqueId());
     }
 }

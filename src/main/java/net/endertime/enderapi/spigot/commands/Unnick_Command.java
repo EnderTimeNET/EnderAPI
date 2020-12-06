@@ -3,6 +3,7 @@ package net.endertime.enderapi.spigot.commands;
 import de.dytanic.cloudnet.wrapper.Wrapper;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderapi.spigot.api.NickAPI;
+import net.endertime.enderapi.spigot.gameapi.UnnickEvent;
 import net.endertime.enderapi.spigot.utils.Nick;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -56,6 +57,8 @@ public class Unnick_Command implements CommandExecutor {
                                 }
 
                                 //EnderAPI.getInstance().updateScoreboardGlobally();
+
+                                Bukkit.getPluginManager().callEvent(new UnnickEvent());
 
                                 EnderAPI.getInstance().sendActionBar(p,
                                         "§7Du bist nun nicht mehr als §e" + nick.getNickedName() + " §7genickt");

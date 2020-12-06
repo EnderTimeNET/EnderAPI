@@ -418,7 +418,12 @@ public enum SkullType {
             "Barrier"), GRASS_BLOCK(
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvO" +
                     "DQ0OWI5MzE4ZTMzMTU4ZTY0YTQ2YWIwZGUxMjFjM2Q0MDAwMGUzMzMyYzE1NzQ5MzJiM2M4NDlkOGZhMGRjMiJ9fX0=",
-            "Grass_Block");
+            "Grass_Block"), COMMAND_BLOCK_CHAIN(
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWRj" +
+                    "ZjI5NjI4NzhjYmY3ZTE0NWM5MmVmY2MxYzYzYmZkMjRkYzEyNmZjNTE5ZDA4YjE4MzE4ZTRiMWE0ZSJ9fX0=",
+            "Command_Block_Chain"), RED_HEART(
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjgz" +
+                    "N2YzZGIxM2E0MGQ0OTc5ZGU3NzE3OWUxOGFmNmUwYmMzY2MzOWVhNmFiYTUxOGJiMDgwYTZmMDFhNDAifX19", "Red_Heart");
 
     private ItemStack item;
     private String name;
@@ -515,6 +520,8 @@ public enum SkullType {
         list.add(TEAM_BLOCK);
         list.add(BARRIER);
         list.add(GRASS_BLOCK);
+        list.add(RED_HEART);
+        list.add(COMMAND_BLOCK_CHAIN);
     }
 
 }

@@ -1,6 +1,7 @@
 package net.endertime.enderkomplex.spigot.utils;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderkomplex.spigot.commands.VanishCommand;
@@ -16,13 +17,13 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class VanishListener implements Listener {
 
-    public static ArrayList<String> reducedVanish = new ArrayList<>();
+    public static ArrayList<UUID> reducedVanish = new ArrayList<>();
 
     @EventHandler (priority = EventPriority.HIGH)
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
 
-        if(reducedVanish.contains(p.getName())) {
+        if(reducedVanish.contains(p.getUniqueId())) {
             e.setJoinMessage(null);
             Bukkit.getOnlinePlayers().forEach(online -> {
                 if(!online.hasPermission("ek.commands.vanish")) {
@@ -30,7 +31,14 @@ public class VanishListener implements Listener {
                 }
             });
             p.setGameMode(GameMode.SPECTATOR);
-            Bukkit.getScheduler().scheduleSyncDelayedTask(ServerData.Instance, () -> p.setGameMode(GameMode.SPECTATOR), 20);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(ServerData.Instance, () -> {
+                Bukkit.getOnlinePlayers().forEach(online -> {
+                    if(!online.hasPermission("ek.commands.vanish")) {
+                        EnderAPI.getInstance().hidePlayer(online, p);
+                    }
+                });
+                p.setGameMode(GameMode.SPECTATOR);
+                }, 20);
         }
 
         if(!VanishCommand.vanished.isEmpty()) {
@@ -60,8 +68,8 @@ public class VanishListener implements Listener {
             VanishCommand.vanished.remove(p);
             EnderAPI.getInstance().getVanish().remove(p);
         }
-        if(reducedVanish.contains(p.getName())) {
-            reducedVanish.remove(p.getName());
+        if(reducedVanish.contains(p.getUniqueId())) {
+            reducedVanish.remove(p.getUniqueId());
             e.setQuitMessage(null);
         }
     }

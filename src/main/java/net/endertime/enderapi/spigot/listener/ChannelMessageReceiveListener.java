@@ -8,6 +8,7 @@ import net.endertime.enderapi.spigot.api.NickAPI;
 import net.endertime.enderapi.spigot.api.PartyAPI;
 import net.endertime.enderapi.spigot.utils.Nick;
 import net.endertime.enderapi.spigot.utils.Version;
+import net.endertime.enderkomplex.spigot.utils.VanishListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -116,6 +117,7 @@ public class ChannelMessageReceiveListener {
                     UUID uuid = UUID.fromString(event.getData().getString("uuid"));
                     if (action.equals("SET_VANISH")) {
                         EnderAPI.getInstance().getVanishUUID().add(uuid);
+                        VanishListener.reducedVanish.add(uuid);
                     }
                 }
             }

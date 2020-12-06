@@ -13,6 +13,7 @@ import de.dytanic.cloudnet.driver.CloudNetDriver;
 import de.dytanic.cloudnet.wrapper.Wrapper;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import net.endertime.enderapi.spigot.gameapi.SpectatorListener;
 import net.endertime.enderapi.spigot.listener.ChannelMessageReceiveListener;
 import net.endertime.enderapi.clan.ClanAPI;
 import net.endertime.enderapi.database.databaseapi.DataBaseAPI;
@@ -39,6 +40,7 @@ import net.labymod.serverapi.bukkit.listener.PlayerJoinListener;
 import net.labymod.serverapi.bukkit.utils.PacketUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
@@ -123,6 +125,7 @@ public class Spigot extends JavaPlugin {
         pm.registerEvents(new net.endertime.enderapi.spigot.listener.PlayerJoinListener(), this);
         pm.registerEvents(new Rank_Command(), this);
         pm.registerEvents(new Reset_Command(), this);
+        //pm.registerEvents(new SpectatorListener(), this);
 
 
         if (CloudNetDriver.getInstance().getCloudServiceProvider().getCloudServiceByName("Proxy-1").getAddress().getPort() == 25565) {

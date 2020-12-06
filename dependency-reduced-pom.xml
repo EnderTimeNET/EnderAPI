@@ -154,7 +154,7 @@
       <exclusions>
         <exclusion>
           <artifactId>jline</artifactId>
-          <groupId>jline</groupId>
+          <groupId>org.jline</groupId>
         </exclusion>
         <exclusion>
           <artifactId>jansi</artifactId>

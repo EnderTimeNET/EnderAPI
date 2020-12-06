@@ -34,7 +34,6 @@ public class VjumpCommand extends Command {
                         if(EnderAPI.getInstance().getState(serverinfo.getName()).equals(State.ONLINE) |
                                 EnderAPI.getInstance().getState(serverinfo.getName()).equals(State.INGAME)) {
                             ProxiedPlayer target = ProxyServer.getInstance().getPlayer(arg);
-                            ProxyHandler.sendPluginMessage(target, PluginMessage.SET_VANISH, pp.getName());
                             ChannelMessage.builder()
                                     .channel("enderkomplex")
                                     .message("pluginmessage")

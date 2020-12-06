@@ -51,14 +51,6 @@ public class ChannelListener implements PluginMessageListener {
                         ServerHandler.createNPC(target, additionalText);
                     }
                     break;
-                case "SET_VANISH":
-                    if(target != null) {
-                        String additionalText = in.readUTF();
-                        if(!VanishListener.reducedVanish.contains(additionalText)) {
-                            VanishListener.reducedVanish.add(additionalText);
-                        }
-                    }
-                    break;
             }
         }
     }
