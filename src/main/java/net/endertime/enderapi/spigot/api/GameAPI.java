@@ -203,7 +203,7 @@ public class GameAPI {
         this.countdown = countdown;
     }
 
-    public BukkitTask getBukkitTask() {
-        return bukkitTask;
+    public int getCountdown() {
+        return countdown;
     }
 }
