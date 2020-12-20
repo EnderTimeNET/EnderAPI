@@ -198,4 +198,12 @@ public class GameAPI {
             }, 20L, 20L);
         }
     }
+
+    public void setCountdown(int countdown) {
+        this.countdown = countdown;
+    }
+
+    public BukkitTask getBukkitTask() {
+        return bukkitTask;
+    }
 }
