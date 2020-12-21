@@ -5,10 +5,10 @@ import net.endertime.enderapi.clan.ClanAPI;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderapi.spigot.api.NickAPI;
 import net.endertime.enderapi.spigot.api.PartyAPI;
-import net.minecraft.server.v1_12_R1.*;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -191,9 +191,6 @@ public class ScoreBoard {
                     getScoreboardPTab().getTeam(scoreBoardPrefix.getTeam()).setPrefix(scoreBoardPrefix.getRang());
                     getScoreboardPTab().getTeam(scoreBoardPrefix.getTeam()).setSuffix(scoreBoardPrefix.getSuffix());
 
-                    if (!Wrapper.getInstance().getServiceId().getName().startsWith("Terra"))
-                        getScoreboardPTab().getTeam(scoreBoardPrefix.getTeam()).setCollisionRule(ScoreboardTeamBase.EnumTeamPush.NEVER);
-
                     sendPacket(new PacketPlayOutScoreboardTeam(getScoreboardPTab().getTeam(scoreBoardPrefix.getTeam()), 0));
 
                 } else {
@@ -218,9 +215,6 @@ public class ScoreBoard {
                 getScoreboardPTab().addPlayerToTeam(scoreBoardPrefix.getEntry(), scoreBoardPrefix.getTeam());
                 getScoreboardPTab().getTeam(scoreBoardPrefix.getTeam()).setPrefix(scoreBoardPrefix.getRang());
                 getScoreboardPTab().getTeam(scoreBoardPrefix.getTeam()).setSuffix(scoreBoardPrefix.getSuffix());
-
-                if (!Wrapper.getInstance().getServiceId().getName().startsWith("Terra"))
-                    getScoreboardPTab().getTeam(scoreBoardPrefix.getTeam()).setCollisionRule(ScoreboardTeamBase.EnumTeamPush.NEVER);
 
             } else {
                 if (getScoreboardPTab().getTeam(scoreBoardPrefix.getTeam()).getPlayerNameSet().contains(scoreBoardPrefix.getEntry())) {

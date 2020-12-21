@@ -4,8 +4,8 @@ import org.bukkit.Sound;
 
 public enum Sounds {
 
-    SUCCESS(Sound.ENTITY_PLAYER_LEVELUP),
-    FAILED(Sound.ITEM_SHIELD_BREAK);
+    SUCCESS(Sound.LEVEL_UP),
+    FAILED(Sound.ITEM_BREAK);
 
     private Sound sound;
 

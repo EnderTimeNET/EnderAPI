@@ -22,7 +22,7 @@ import net.endertime.enderapi.database.friends.*;
 import net.endertime.enderapi.spigot.Spigot;
 import net.endertime.enderapi.spigot.utils.*;
 import net.endertime.enderapi.spigot.utils.SkullType;
-import net.minecraft.server.v1_12_R1.*;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -31,9 +31,9 @@ import org.bukkit.World;
 import org.bukkit.WorldType;
 import org.bukkit.block.Sign;
 import org.bukkit.block.Skull;
-import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -45,6 +45,7 @@ import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -383,17 +384,6 @@ public class EnderAPI {
         return b;
     }
 
-    public void revivePlayer(final Player p) {
-        Bukkit.getScheduler().scheduleSyncDelayedTask(getPlugin(), new Runnable() {
-            public void run() {
-
-                PacketPlayInClientCommand packet = new PacketPlayInClientCommand(PacketPlayInClientCommand.EnumClientCommand.PERFORM_RESPAWN);
-                ((CraftPlayer) p).getHandle().playerConnection.a(packet);
-                p.playSound(p.getLocation(), Sound.ENTITY_WITHER_SPAWN, (float) 0.5, 2);
-            }
-        }, 5);
-    }
-
     public void unloadWorld(World world) {
         if (!world.equals(null)) {
             Bukkit.getServer().unloadWorld(world, true);
@@ -689,7 +679,7 @@ public class EnderAPI {
 
     public void sendJoin(Player p, List<Player> players) {
         if (!getVanish().contains(p) && !getVanishUUID().contains(p.getUniqueId())) {
-            p.playSound(p.getLocation(), Sound.ENTITY_ILLUSION_ILLAGER_PREPARE_MIRROR, (float) 0.5, 1);
+            //p.playSound(p.getLocation(), Sound.ENTITY_ILLUSION_ILLAGER_PREPARE_MIRROR, (float) 0.5, 1);
             for (Player player : players) {
                 if (p.getWorld().getName().equals(player.getWorld().getName()))
                     sendParticlePacket(player, EnumParticle.CLOUD, p.getLocation(), 0.7, 200, 0.1);
@@ -699,7 +689,7 @@ public class EnderAPI {
 
     public void sendJoin(Player p, Collection<? extends  Player> players) {
         if (!getVanish().contains(p) && !getVanishUUID().contains(p.getUniqueId())) {
-            p.playSound(p.getLocation(), Sound.ENTITY_ILLUSION_ILLAGER_PREPARE_MIRROR, (float) 0.5, 1);
+            //p.playSound(p.getLocation(), Sound.ENTITY_ILLUSION_ILLAGER_PREPARE_MIRROR, (float) 0.5, 1);
             for (Player player : players) {
                 if (p.getWorld().getName().equals(player.getWorld().getName()))
                     sendParticlePacket(player, EnumParticle.CLOUD, p.getLocation(), 0.7, 200, 0.1);
@@ -754,13 +744,10 @@ public class EnderAPI {
         return count;
     }
 
-    public void sendActionBar(Player p, String message) {
-        if (!getNoActionbar().contains(p)) {
-            CraftPlayer player = (CraftPlayer) p;
-            IChatBaseComponent ibc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + replace(p, message) + "\"}");
-            PacketPlayOutTitle packet = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.ACTIONBAR, ibc, 200, 5000,
-                    900);
-            player.getHandle().playerConnection.sendPacket(packet);
+    public void sendActionBar(Player player, String message) {
+        if (!getNoActionbar().contains(player)) {
+            PacketPlayOutChat packet = new PacketPlayOutChat(new ChatComponentText(replace(player, message)), (byte)2);
+            ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
         }
     }
 
@@ -1086,25 +1073,44 @@ public class EnderAPI {
         PacketPlayOutNamedEntitySpawn entitySpawnPacket = new PacketPlayOutNamedEntitySpawn(((CraftPlayer)show).getHandle());
         PacketPlayOutPlayerInfo playerInfoAddPacket = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER,
                 ((CraftPlayer)show).getHandle());
-        PacketPlayOutEntityEquipment entityEquipmentPacketHelmet = new PacketPlayOutEntityEquipment
-                (((((CraftPlayer) show).getHandle()).getId()),
-                        EnumItemSlot.HEAD, (((CraftPlayer)show).getHandle()).getEquipment(EnumItemSlot.HEAD));
-        PacketPlayOutEntityEquipment entityEquipmentPacketChest = new PacketPlayOutEntityEquipment
-                (((((CraftPlayer) show).getHandle()).getId()),
-                        EnumItemSlot.CHEST, (((CraftPlayer)show).getHandle()).getEquipment(EnumItemSlot.CHEST));
-        PacketPlayOutEntityEquipment entityEquipmentPacketLeggings = new PacketPlayOutEntityEquipment
-                (((((CraftPlayer) show).getHandle()).getId()),
-                        EnumItemSlot.LEGS, (((CraftPlayer)show).getHandle()).getEquipment(EnumItemSlot.LEGS));
-        PacketPlayOutEntityEquipment entityEquipmentPacketBoots = new PacketPlayOutEntityEquipment
-                (((((CraftPlayer) show).getHandle()).getId()),
-                        EnumItemSlot.FEET, (((CraftPlayer)show).getHandle()).getEquipment(EnumItemSlot.FEET));
+
+
 
         (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(playerInfoAddPacket);
         (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entitySpawnPacket);
-        (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entityEquipmentPacketHelmet);
-        (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entityEquipmentPacketChest);
-        (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entityEquipmentPacketLeggings);
-        (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entityEquipmentPacketBoots);
+        equip((((CraftPlayer)show).getHandle()).getId(), 1, (((CraftPlayer)show).getHandle()).getEquipment(1), p);
+        equip((((CraftPlayer)show).getHandle()).getId(), 2, (((CraftPlayer)show).getHandle()).getEquipment(2), p);
+        equip((((CraftPlayer)show).getHandle()).getId(), 3, (((CraftPlayer)show).getHandle()).getEquipment(3), p);
+        equip((((CraftPlayer)show).getHandle()).getId(), 4, (((CraftPlayer)show).getHandle()).getEquipment(4), p);
+    }
+
+    public void sendPacket(Packet<?> packet, Player player){
+        ((CraftPlayer)player).getHandle().playerConnection.sendPacket(packet);
+    }
+
+    private void equip(int entityID, int slot, net.minecraft.server.v1_8_R3.ItemStack itemstack, Player player){
+        PacketPlayOutEntityEquipment packet = new PacketPlayOutEntityEquipment();
+        setValue(packet, "a", entityID);
+        setValue(packet, "b", slot);
+        setValue(packet, "c", itemstack);
+        sendPacket(packet, player);
+    }
+
+    private void setValue(Object obj,String name,Object value){
+        try{
+            Field field = obj.getClass().getDeclaredField(name);
+            field.setAccessible(true);
+            field.set(obj, value);
+        }catch(Exception e){}
+    }
+
+    private Object getValue(Object obj,String name){
+        try{
+            Field field = obj.getClass().getDeclaredField(name);
+            field.setAccessible(true);
+            return field.get(obj);
+        }catch(Exception e){}
+        return null;
     }
 
     public List<Player> getNoActionbar() {

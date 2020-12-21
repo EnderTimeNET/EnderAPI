@@ -8,13 +8,13 @@ import net.endertime.enderkomplex.bungee.enums.ReportStatus;
 import net.endertime.enderkomplex.mysql.Database;
 import net.endertime.enderkomplex.spigot.core.ServerHandler;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
-import net.minecraft.server.v1_12_R1.EntityPlayer;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
 
 public class Report {
 

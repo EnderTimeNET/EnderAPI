@@ -3,24 +3,15 @@ package net.endertime.enderapi.spigot.utils;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.endertime.enderapi.spigot.api.EnderAPI;
-import org.apache.commons.io.IOUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.UUID;
 
 public class CreateSkulls {

@@ -98,7 +98,6 @@ public class Spigot extends JavaPlugin {
         }
 
         clearRecipes();
-        registerProtocolSoundBlocker();
 
         if (CloudNetDriver.getInstance().getCloudServiceProvider().getCloudServiceByName("Proxy-1").getAddress().getPort() == 25565) {
             BossbarHandler.startUpdater();
@@ -305,20 +304,5 @@ public class Spigot extends JavaPlugin {
             ex.printStackTrace();
             return null;
         }
-    }
-
-    public void registerProtocolSoundBlocker() {
-        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(plugin, ListenerPriority.NORMAL,
-                PacketType.Play.Server.NAMED_SOUND_EFFECT) {
-            @Override
-            public void onPacketSending(PacketEvent e) {
-                if(e.getPacketType() == PacketType.Play.Server.NAMED_SOUND_EFFECT) {
-                    if(e.getPacket().getSoundEffects().getValues().contains(Sound.ENTITY_PLAYER_ATTACK_NODAMAGE)
-                            || e.getPacket().getSoundEffects().getValues().contains(Sound.ENTITY_PLAYER_ATTACK_KNOCKBACK)) {
-                        e.setCancelled(true);
-                    }
-                }
-            }
-        });
     }
 }

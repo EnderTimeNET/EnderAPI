@@ -3,7 +3,7 @@ package net.endertime.enderapi.spigot.utils;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.endertime.enderapi.spigot.api.EnderAPI;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;

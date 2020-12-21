@@ -63,7 +63,7 @@ public class Unnick_Command implements CommandExecutor {
                                 EnderAPI.getInstance().sendActionBar(p,
                                         "§7Du bist nun nicht mehr als §e" + nick.getNickedName() + " §7genickt");
 
-                                p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.5F, 2.0F);
+                                p.playSound(p.getLocation(), Sound.LEVEL_UP, 0.5F, 2.0F);
                                 p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10, 1, true, false));
                             } else {
                                 EnderAPI.getInstance().sendActionBar(p, "§7Du bist §cnicht §7genickt");

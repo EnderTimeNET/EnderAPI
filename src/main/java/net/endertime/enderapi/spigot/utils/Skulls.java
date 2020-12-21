@@ -35,7 +35,7 @@ public class Skulls {
             this.itemStack = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
             this.itemMeta = this.itemStack.getItemMeta();
             this.skullMeta = (SkullMeta) this.itemMeta;
-            this.skullMeta.setOwningPlayer(Bukkit.getOfflinePlayer(uuid));
+            this.skullMeta.setOwner(EnderAPI.getInstance().getName(uuid));
             this.itemStack.setItemMeta(skullMeta);
         }
     }
@@ -135,7 +135,7 @@ public class Skulls {
 
     public Skulls setOwner(UUID owner) {
         this.owner = owner;
-        getSkullMeta().setOwningPlayer(Bukkit.getOfflinePlayer(owner));
+        this.skullMeta.setOwner(EnderAPI.getInstance().getName(uuid));
         getItemStack().setItemMeta(getSkullMeta());
         return this;
     }

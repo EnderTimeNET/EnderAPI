@@ -5,8 +5,8 @@ import com.mojang.authlib.properties.Property;
 import net.endertime.enderapi.database.databaseapi.DataBaseAPI;
 import net.endertime.enderapi.database.databaseapi.mysql.MySQL;
 import net.endertime.enderapi.database.databaseapi.mysql.PreparedStatement;
-import net.minecraft.server.v1_12_R1.EntityPlayer;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.sql.ResultSet;

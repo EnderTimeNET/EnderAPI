@@ -44,12 +44,12 @@ public class Stats_Command implements CommandExecutor, Listener {
                                         .getTeamDatabase().getNickedName(uuidNick)), uuidNick, stats));
                             } else {
                                 EnderAPI.getInstance().sendActionBar(player, "§7Dieser Spieler war §cnoch nie §7auf §5EnderTime§8!");
-                                EnderAPI.getInstance().playSound(player, Sound.ITEM_SHIELD_BREAK);
+                                EnderAPI.getInstance().playSound(player, Sound.ITEM_BREAK);
                             }
                         }
                     } else {
                         EnderAPI.getInstance().sendActionBar(player, "§7Benutze§8: /§cstats §8[<§cname§8>]");
-                        EnderAPI.getInstance().playSound(player, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(player, Sound.ITEM_BREAK);
                     }
                 } else {
                     player.sendMessage(EnderAPI.getInstance().getNoPerm());
@@ -82,7 +82,7 @@ public class Stats_Command implements CommandExecutor, Listener {
                         p.openInventory(inv);
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Du hast §ckeine §7Reset-Tokens! Hole dir welche in unserem Online-Shop");
-                        p.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, (float) 0.5, 1);
+                        p.playSound(p.getLocation(), Sound.ITEM_BREAK, (float) 0.5, 1);
                     }
                 }
             } else if(e.getInventory().getTitle().equals("§6Statistikvergleich")) {
@@ -105,10 +105,10 @@ public class Stats_Command implements CommandExecutor, Listener {
                     p.closeInventory();
 
                     EnderAPI.getInstance().sendActionBar(p, "§7Du hast §2erfolgreich §7deine Statistik von " + stats.getGameName() + " §7zurückgesetzt!");
-                    p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, (float) 0.5, 1);
+                    p.playSound(p.getLocation(), Sound.LEVEL_UP, (float) 0.5, 1);
                 } else if(e.getCurrentItem().getType().equals(Material.REDSTONE_BLOCK)) {
                     p.closeInventory();
-                    p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_EGG, (float) 0.5, 1);
+                    p.playSound(p.getLocation(), Sound.CHICKEN_EGG_POP, (float) 0.5, 1);
                 }
             }
         }

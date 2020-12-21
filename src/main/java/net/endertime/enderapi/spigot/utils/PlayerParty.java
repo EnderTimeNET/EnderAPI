@@ -3,9 +3,9 @@ package net.endertime.enderapi.spigot.utils;
 import com.mojang.authlib.GameProfile;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderapi.spigot.api.NickAPI;
-import net.minecraft.server.v1_12_R1.*;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

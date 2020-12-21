@@ -38,7 +38,7 @@ public class SpectatorListener implements Listener {
                         p.teleport(Bukkit.getPlayer(EnderAPI.getInstance().getUUID(name)));
                     }
                     e.setCancelled(true);
-                    p.playSound(p.getLocation(), Sound.ITEM_CHORUS_FRUIT_TELEPORT, (float) 0.5, 1);
+                    p.playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, (float) 0.5, 1);
                     p.closeInventory();
                 }
             }

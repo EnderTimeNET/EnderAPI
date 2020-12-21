@@ -91,7 +91,7 @@ public class ChannelMessageReceiveListener {
 
                             target.sendMessage("§7Ein Spieler mit deinem §5Nicknamen §7ist §cgejoint§7, um Bugs zu vermeiden wurdest du §centnickt");
 
-                            target.playSound(target.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.5F, 2.0F);
+                            target.playSound(target.getLocation(), Sound.LEVEL_UP, 0.5F, 2.0F);
                             target.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10, 1));
                         }
                     }
