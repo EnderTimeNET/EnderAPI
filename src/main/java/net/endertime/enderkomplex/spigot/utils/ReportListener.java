@@ -35,7 +35,7 @@ public class ReportListener implements Listener {
                                     EnderAPI.getInstance().sendActionBar(p, "§7Du hast §aerfolgreich §7einen Report für " +
                                             e.getCurrentItem().getItemMeta().getDisplayName() + "§7 erstellt§8!");
                                     p.closeInventory();
-                                    EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
+                                    EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP);
                                     new Report(ReportCommand.reports.get(p), p.getUniqueId().toString(),
                                             ReportReason.valueOf(e.getCurrentItem().getItemMeta().getDisplayName().replaceAll("§4§l", "")));
                                     ReportCommand.reports.remove(p);
@@ -43,24 +43,24 @@ public class ReportListener implements Listener {
                                     EnderAPI.getInstance().sendActionBar(p, "§7Du hast §aerfolgreich §7einen Report für " +
                                             e.getCurrentItem().getItemMeta().getDisplayName() + "§7 erstellt§8!");
                                     p.closeInventory();
-                                    EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
+                                    EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP);
                                     ReportCommand.reports.remove(p);
                                 }
                             } else {
                                 EnderAPI.getInstance().sendActionBar(p, "§7Du hast §aerfolgreich §7einen Report für "
                                         + e.getCurrentItem().getItemMeta().getDisplayName() + "§7 erstellt§8!");
                                 p.closeInventory();
-                                EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
+                                EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP);
                                 ReportCommand.reports.remove(p);
                             }
                         } else {
                             if(e.getCurrentItem().getType().equals(Material.BOOK_AND_QUILL)) {
                                 p.closeInventory();
-                                EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                                EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                                 EnderAPI.getInstance().sendActionBar(p, "§7Dieser Spieler hat §cnoch nichts §7geschrieben§8!");
                             } else if(e.getCurrentItem().getType().equals(Material.RABBIT_FOOT)) {
                                 p.closeInventory();
-                                EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                                EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                                 EnderAPI.getInstance().sendActionBar(p, "§7Du musst §c2 Spieler §7angeben um den Grund §4§lTEAMING §7zu wählen§8!");
                             }
                         }

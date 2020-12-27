@@ -24,11 +24,11 @@ public class EnderchestCommand implements CommandExecutor, Listener {
                             p.openInventory(target.getEnderChest());
                         } else {
                             EnderAPI.getInstance().sendActionBar(p, "§7Dieser Spieler ist §cnicht §7online§8!");
-                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                            EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         }
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§cec §8<§cname§8>");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                     }
                 }
             }

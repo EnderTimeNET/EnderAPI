@@ -77,7 +77,7 @@ public class ApplyMenu implements Listener {
             if(e.getInventory().getTitle().equals("§6Bewerbungsphasen")) {
                 e.setCancelled(true);
                 p.closeInventory();
-                EnderAPI.getInstance().playSound(p, Sound.BLOCK_LEVER_CLICK);
+                EnderAPI.getInstance().playSound(p, Sound.CLICK);
                 if(e.getCurrentItem().getItemMeta().hasEnchants()) {
                     Database.updateApplyphaseStatus(e.getCurrentItem().getItemMeta().getDisplayName().replaceAll("§c", ""), false);
                 } else {
@@ -86,7 +86,7 @@ public class ApplyMenu implements Listener {
             } else if(e.getInventory().getTitle().startsWith("§6Entscheidung von §c")) {
                 e.setCancelled(true);
                 p.closeInventory();
-                EnderAPI.getInstance().playSound(p, Sound.BLOCK_LEVER_CLICK);
+                EnderAPI.getInstance().playSound(p, Sound.CLICK);
                 int tsid = Integer.valueOf(e.getInventory().getTitle().replaceAll("§6Entscheidung von §c", ""));
                 if(e.getCurrentItem().getType().equals(Material.EMERALD_BLOCK)) {
                     Database.updateApplyStatus(tsid, -2, true);

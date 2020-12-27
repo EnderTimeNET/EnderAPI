@@ -20,19 +20,19 @@ public class InfoFeedCommand implements CommandExecutor {
                 if(args.length == 0) {
                     EnderAPI.getInstance().getNoActionbar().remove(p);
                     InfoFeed.unsetTargets(p);
-                    EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 2);
+                    EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP, 2);
                 } else if(args.length == 1) {
                     if(Bukkit.getPlayer(args[0]) != null) {
                         EnderAPI.getInstance().getNoActionbar().add(p);
                         InfoFeed.setTarget(p, Bukkit.getPlayer(args[0]));
-                        EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 2);
+                        EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP, 2);
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Der Spieler §6" + args[0] + " §7ist §cnicht §7online§8!");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                     }
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§cif §8<§cname§8>");
-                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                 }
             }
         }

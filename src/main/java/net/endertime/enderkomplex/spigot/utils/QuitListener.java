@@ -14,7 +14,6 @@ public class QuitListener implements Listener {
     public void onQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
 
-        BossbarHandler.deleteBossbar(p);
         EnderAPI.getInstance().getNoActionbar().remove(p);
     }
 

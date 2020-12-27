@@ -20,7 +20,7 @@ public class NotifysCommand implements CommandExecutor {
                     NotifyMenu.openMenu(p);
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§cnotifys");
-                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                 }
             }
         }

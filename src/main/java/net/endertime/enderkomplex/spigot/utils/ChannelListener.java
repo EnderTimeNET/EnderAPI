@@ -32,17 +32,17 @@ public class ChannelListener implements PluginMessageListener {
                     break;
                 case "PLAY_ERROR_SOUND":
                     if(target != null) {
-                        target.playSound(target.getLocation(), Sound.ITEM_SHIELD_BREAK, (float) 0.5, 1);
+                        target.playSound(target.getLocation(), Sound.ITEM_BREAK, (float) 0.5, 1);
                     }
                     break;
                 case "PLAY_SUCCESS_SOUND":
                     if(target != null) {
-                        target.playSound(target.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, (float) 0.5, 2);
+                        target.playSound(target.getLocation(), Sound.LEVEL_UP, (float) 0.5, 2);
                     }
                     break;
                 case "PLAY_NOTIFY_SOUND":
                     if(target != null) {
-                        target.playSound(target.getLocation(), Sound.BLOCK_NOTE_CHIME, (float) 1, (float) 1.5);
+                        target.playSound(target.getLocation(), Sound.ORB_PICKUP, (float) 1, (float) 1.5);
                     }
                     break;
                 case "CREATE_NPC":

@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.util.UUID;
 
+import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderkomplex.bungee.enums.BanReason;
 import net.endertime.enderkomplex.bungee.enums.MuteReason;
 import net.endertime.enderkomplex.bungee.enums.PluginMessage;
@@ -33,7 +34,7 @@ public class ServerHandler {
         connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc));
         connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
         DataWatcher watcher = new DataWatcher(null);
-        watcher.register(new DataWatcherObject<>(13, DataWatcherRegistry.a), (byte) 127);
+        //watcher.register(new DataWatcherObject<>(13, DataWatcherRegistry.a), (byte) 127);
         connection.sendPacket(new PacketPlayOutEntityMetadata(npc.getId(), watcher, true));
         connection.sendPacket(new PacketPlayOutEntityHeadRotation(npc, (byte) ((p.getLocation().getYaw() * 256.0F) / 360.0F)));
         Bukkit.getScheduler().scheduleSyncDelayedTask(ServerData.Instance, new Runnable() {
@@ -90,10 +91,7 @@ public class ServerHandler {
     }
 
     public static void sendActionbar(Player p, String message) {
-        CraftPlayer player = (CraftPlayer) p;
-        IChatBaseComponent ibc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
-        PacketPlayOutTitle packet = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.ACTIONBAR, ibc, 200, 3000, 900);
-        player.getHandle().playerConnection.sendPacket(packet);
+        EnderAPI.getInstance().sendActionBar(p, message);
     }
 
     public static Material getMaterial(BanReason br) {
@@ -103,7 +101,7 @@ public class ServerHandler {
             case AFK_RAFMING:
                 return Material.COBBLESTONE;
             case BANNUMGEHUNG:
-                return Material.SHIELD;
+                return Material.TRAP_DOOR;
             case BAUWERKE:
                 return Material.BRICK;
             case BUGUSING:
@@ -158,8 +156,7 @@ public class ServerHandler {
         entity.setCustomName(text);
         entity.setCustomNameVisible(true);
         entity.setInvisible(true);
-        entity.setInvulnerable(true);
-        entity.setNoGravity(true);
+        entity.setGravity(false);
         PacketPlayOutSpawnEntityLiving packet = new PacketPlayOutSpawnEntityLiving(entity);
         Bukkit.getOnlinePlayers().forEach(online -> ((CraftPlayer) online).getHandle().playerConnection.sendPacket(packet));
         return entity;

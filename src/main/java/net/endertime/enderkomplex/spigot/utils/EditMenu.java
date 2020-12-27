@@ -67,7 +67,7 @@ public class EditMenu implements Listener {
                         } else {
                             Database.unmutePlayer(uuid, UnmuteReason.UNMUTE_REQUEST, p.getUniqueId());
                         }
-                        EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
+                        EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP);
                         EnderAPI.getInstance().sendActionBar(p, "§7Die Mutezeit wurde §aerfolgreich §7verkürzt§8!");
                         Database.updateActiveMuteReducer(uuid, p.getUniqueId());
                         Database.updateActiveMuteReduceTimestamp(uuid);
@@ -75,7 +75,7 @@ public class EditMenu implements Listener {
                         p.closeInventory();
                     } else if(e.getCurrentItem().getDurability() == 14) {
                         p.closeInventory();
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         EnderAPI.getInstance().sendActionBar(p, "§cDer Vorgang wurde abgebrochen§8!");
                     }
                 }
@@ -90,7 +90,7 @@ public class EditMenu implements Listener {
                         } else {
                             Database.unbanPlayer(uuid, UnbanReason.UNBAN_REQUEST, p.getUniqueId());
                         }
-                        EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
+                        EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP);
                         EnderAPI.getInstance().sendActionBar(p, "§7Die Bannzeit wurde §aerfolgreich §7verkürzt§8!");
                         Database.updateActiveBanReducer(uuid, p.getUniqueId());
                         Database.updateActiveBanReduceTimestamp(uuid);
@@ -98,7 +98,7 @@ public class EditMenu implements Listener {
                         p.closeInventory();
                     } else if(e.getCurrentItem().getDurability() == 14) {
                         p.closeInventory();
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         EnderAPI.getInstance().sendActionBar(p, "§cDer Vorgang wurde abgebrochen§8!");
                     }
                 }
@@ -137,14 +137,14 @@ public class EditMenu implements Listener {
             public void onAnvilClick(AnvilGUI.AnvilClickEvent e) {
                 if (e.getSlot() == AnvilGUI.AnvilSlot.OUTPUT) {
                     if (!Database.isChatlogExist(e.getName())) {
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         EnderAPI.getInstance().sendActionBar(p, "§cDiese Chatlog ID existiert nicht§8!");
                         e.setWillClose(true);
                         e.setWillDestroy(true);
                     } else {
                         e.setWillClose(true);
                         e.setWillDestroy(true);
-                        EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
+                        EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP);
                         EnderAPI.getInstance().sendActionBar(p, "§7Die Chatlog ID wurde §aerfolgreich §7überschrieben§8!");
                         Database.updateActiveMuteChatlogID(uuid, e.getName());
                     }
@@ -163,14 +163,14 @@ public class EditMenu implements Listener {
             public void onAnvilClick(AnvilGUI.AnvilClickEvent e) {
                 if (e.getSlot() == AnvilGUI.AnvilSlot.OUTPUT) {
                     if (!Database.isChatlogExist(e.getName())) {
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         EnderAPI.getInstance().sendActionBar(p, "§cDiese Replay ID existiert nicht§8!");
                         e.setWillClose(true);
                         e.setWillDestroy(true);
                     } else {
                         e.setWillClose(true);
                         e.setWillDestroy(true);
-                        EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
+                        EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP);
                         EnderAPI.getInstance().sendActionBar(p, "§7Die Replay ID wurde §aerfolgreich §7überschrieben§8!");
                         Database.updateActiveBanReplayID(uuid, e.getName());
                     }

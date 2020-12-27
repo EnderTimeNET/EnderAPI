@@ -31,11 +31,11 @@ public class ReportCommand implements CommandExecutor {
                     if(cooldown.get(p) <= System.currentTimeMillis()) {
                         if(args.length == 0) {
                             EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§creport §8<§cname§8>");
-                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                            EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         } else if(args.length == 1) {
                             if(p.getName().equalsIgnoreCase(args[0])) {
                                 EnderAPI.getInstance().sendActionBar(p, "§7Du kannst dich §cnicht selber §7reporten§8!");
-                                EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                                EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                                 return false;
                             }
                             String name = args[0];
@@ -49,15 +49,15 @@ public class ReportCommand implements CommandExecutor {
                                             cooldown.put(p, (System.currentTimeMillis() + 5000));
                                         } else {
                                             EnderAPI.getInstance().sendActionBar(p, "§7Du kannst dich §cnicht selber §7reporten§8!");
-                                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                                            EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                                         }
                                     } else {
                                         EnderAPI.getInstance().sendActionBar(p, "§7Dieser Spieler ist §cnicht §7auf diesem Server§8!");
-                                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                                     }
                                 } else {
                                     EnderAPI.getInstance().sendActionBar(p, "§7Dieser Spieler ist §cnicht §7auf diesem Server§8!");
-                                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                                 }
                             } else {
                                 if (Bukkit.getPlayer(name) != null) {
@@ -66,16 +66,16 @@ public class ReportCommand implements CommandExecutor {
                                     cooldown.put(p, (System.currentTimeMillis() + 5000));
                                 } else {
                                     EnderAPI.getInstance().sendActionBar(p, "§7Dieser Spieler ist §cnicht §7auf diesem Server§8!");
-                                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                                 }
                             }
                         } else {
                             EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§creport §8<§cname§8>");
-                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                            EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         }
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Bitte §cwarte einen Moment §7um diesen Befehl zu nutzen§8!");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                     }
                 }
             }

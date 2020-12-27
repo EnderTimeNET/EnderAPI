@@ -11,7 +11,7 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
@@ -31,7 +31,7 @@ public class CheckCommand implements CommandExecutor, Listener {
                     Player target = Bukkit.getPlayer(args[0]);
                     if (target != null) {
                         EnderAPI.getInstance().sendActionBar(p, "§c" + target.getName() + "§7 wird auf Rückstossresistenz geprüft...");
-                        EnderAPI.getInstance().playSound(p, Sound.BLOCK_ANVIL_LAND, 0);
+                        EnderAPI.getInstance().playSound(p, Sound.ANVIL_LAND, 0);
                         target.setWalkSpeed(0.0F);
                         old.put(target, target.getLocation());
                         list.add(p);
@@ -58,10 +58,10 @@ public class CheckCommand implements CommandExecutor, Listener {
                                 int newz = (int) newloc.getZ();
                                 if ((oldx == newx) && (oldy == newy) && (oldz == newz)) {
                                     EnderAPI.getInstance().sendActionBar(p, "§7Knockback§8: §4§l✖ §8§l┃ §6§l" + ((CraftPlayer) p).getHandle().ping + "§7§l ms");
-                                    EnderAPI.getInstance().playSound(p, Sound.BLOCK_ANVIL_LAND, 0);
+                                    EnderAPI.getInstance().playSound(p, Sound.ANVIL_LAND, 0);
                                 } else {
                                     EnderAPI.getInstance().sendActionBar(p, "§7§lKnockback§8§l: §2§l✔ §8§l┃ §6§l" + ((CraftPlayer) p).getHandle().ping + "§7§l ms");
-                                    EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 2);
+                                    EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP, 2);
                                 }
                                 target.teleport(old.get(target));
                                 target.setWalkSpeed(0.2F);
@@ -70,11 +70,11 @@ public class CheckCommand implements CommandExecutor, Listener {
                         }, 24L);
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Dieser Spieler ist §cnicht §7online§8!");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                     }
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§ccheck §8<§cname§8>");
-                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                 }
             }
         }

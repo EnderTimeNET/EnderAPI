@@ -33,7 +33,7 @@ public class EditBanCommand implements CommandExecutor {
                             if(!p.hasPermission("ek.shortenpunishall")) {
                                 if(!Database.getActiveBanExecutor(uuid).toString().equals(p.getUniqueId().toString())) {
                                     EnderAPI.getInstance().sendActionBar(p, "§7Du kannst nur §cdeine eigenen Banns §7editieren§8!");
-                                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                                     return false;
                                 }
                             }
@@ -79,15 +79,15 @@ public class EditBanCommand implements CommandExecutor {
                             p.openInventory(inv);
                         } else {
                             EnderAPI.getInstance().sendActionBar(p, "§7Der Spieler §c" + args[0] + "§7 ist §cnicht §7gebannt!");
-                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                            EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         }
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Der Spieler §c" + args[0] + "§7 war noch nie auf §5EnderTime§8!");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                     }
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§ceb §8<§cname§8>");
-                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                 }
             }
         }

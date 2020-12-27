@@ -5,16 +5,15 @@ import java.util.HashMap;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderapi.spigot.api.GameAPI;
 import net.endertime.enderapi.spigot.utils.State;
+import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-
-import net.minecraft.server.v1_12_R1.PacketPlayOutPlayerInfo;
 
 public class VanishCommand implements CommandExecutor {
 
@@ -35,7 +34,7 @@ public class VanishCommand implements CommandExecutor {
                                 p.setAllowFlight(true);
                                 EnderAPI.getInstance().getVanish().add(p);
                                 EnderAPI.getInstance().sendActionBar(p, "§7Du bist nun unsichtbar§8!");
-                                EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 2);
+                                EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP, 2);
                                 Bukkit.getOnlinePlayers().forEach(all -> {
                                     if (!all.hasPermission("ek.commands.vanish")) {
                                         EnderAPI.getInstance().hidePlayer(all, p);
@@ -56,7 +55,7 @@ public class VanishCommand implements CommandExecutor {
                                 if (!p.getGameMode().equals(GameMode.CREATIVE))
                                     p.setAllowFlight(false);
                                 EnderAPI.getInstance().sendActionBar(p, "§7Du bist jetzt wieder sichtbar§8!");
-                                EnderAPI.getInstance().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 2);
+                                EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP, 2);
                                 Bukkit.getOnlinePlayers().forEach(all -> {
                                     if (!all.hasPermission("ek.commands.vanish")) {
                                         EnderAPI.getInstance().showPlayer(all, p);
@@ -81,15 +80,15 @@ public class VanishCommand implements CommandExecutor {
                             }
                         } else {
                             EnderAPI.getInstance().sendActionBar(p, "§7Du kannst jetzt §cnicht §7in Vanish gehen§8!");
-                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                            EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         }
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Du kannst jetzt §cnicht §7in Vanish gehen§8!");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                     }
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§cv");
-                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                 }
             }
         }

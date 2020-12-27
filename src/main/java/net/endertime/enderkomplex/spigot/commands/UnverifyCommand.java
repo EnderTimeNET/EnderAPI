@@ -20,7 +20,7 @@ public class UnverifyCommand implements CommandExecutor {
             if(args.length == 0) {
                 if(Database.isVerified(p.getUniqueId())) {
                     Database.updateRanksSpigot(p.getUniqueId(), "Spieler");
-                    p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, (float) 0.5, 1);
+                    p.playSound(p.getLocation(), Sound.LEVEL_UP, (float) 0.5, 1);
                     Bukkit.getScheduler().scheduleSyncDelayedTask(ServerData.Instance, new Runnable() {
 
                             @Override
@@ -31,11 +31,11 @@ public class UnverifyCommand implements CommandExecutor {
                     EnderAPI.getInstance().sendActionBar(p, "§7Du wurdest §aentverifiziert§8!");
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§7Du bist §cnicht §7verifiziert§8!");
-                    p.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, (float) 0.5, 1);
+                    p.playSound(p.getLocation(), Sound.ITEM_BREAK, (float) 0.5, 1);
                 }
             } else {
                 EnderAPI.getInstance().sendActionBar(p, "§7Benutze§8: /§cverify");
-                p.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, (float) 0.5, 1);
+                p.playSound(p.getLocation(), Sound.ITEM_BREAK, (float) 0.5, 1);
             }
         }
         return false;

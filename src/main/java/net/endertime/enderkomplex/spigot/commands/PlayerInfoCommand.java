@@ -30,12 +30,12 @@ public class PlayerInfoCommand implements CommandExecutor {
                             PlayerInfoMenu.createInventory(p, uuid);
                         } else {
                             EnderAPI.getInstance().sendActionBar(p, "§7Der Spieler §c" + args[0] + "§7 war noch nie auf §5EnderTime§8!");
-                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                            EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         }
                     }
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§cpi §8<§cname§8>");
-                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                 }
             }
         }

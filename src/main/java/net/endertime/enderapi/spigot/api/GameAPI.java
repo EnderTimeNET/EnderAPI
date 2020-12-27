@@ -142,20 +142,20 @@ public class GameAPI {
                         case 2:
                             for (Player all : Bukkit.getOnlinePlayers()) {
                                 EnderAPI.getInstance().sendActionBar(all, "§7Das Spiel beginnt in §6" + countdown + " §7Sekunden");
-                                EnderAPI.getInstance().playSound(all, Sound.BLOCK_NOTE_PLING, 0F);
+                                EnderAPI.getInstance().playSound(all, Sound.NOTE_PLING, 0F);
                             }
                             break;
                         case 5:
                             Bukkit.getPluginManager().callEvent(new MapSetupEvent());
                             for (Player all : Bukkit.getOnlinePlayers()) {
                                 EnderAPI.getInstance().sendActionBar(all, "§7Das Spiel beginnt in §6" + countdown + " §7Sekunden");
-                                EnderAPI.getInstance().playSound(all, Sound.BLOCK_NOTE_PLING, 0F);
+                                EnderAPI.getInstance().playSound(all, Sound.NOTE_PLING, 0F);
                             }
                             break;
                         case 1:
                             for (Player all : Bukkit.getOnlinePlayers()) {
                                 EnderAPI.getInstance().sendActionBar(all, "§7Das Spiel beginnt in §6" + countdown + " §7Sekunde");
-                                EnderAPI.getInstance().playSound(all, Sound.BLOCK_NOTE_PLING, 1F);
+                                EnderAPI.getInstance().playSound(all, Sound.NOTE_PLING, 1F);
                             }
                             break;
                         case 0:
@@ -180,13 +180,13 @@ public class GameAPI {
                         case 2:
                             for (Player all : Bukkit.getOnlinePlayers()) {
                                 EnderAPI.getInstance().sendActionBar(all, "§7Serverneustart in §6" + countdown + " §7Sekunden");
-                                EnderAPI.getInstance().playSound(all, Sound.BLOCK_LAVA_POP);
+                                EnderAPI.getInstance().playSound(all, Sound.LAVA_POP);
                             }
                             break;
                         case 1:
                             for (Player all : Bukkit.getOnlinePlayers()) {
                                 EnderAPI.getInstance().sendActionBar(all, "§7Serverneustart in §6" + countdown + " §7Sekunde");
-                                EnderAPI.getInstance().playSound(all, Sound.BLOCK_LAVA_POP);
+                                EnderAPI.getInstance().playSound(all, Sound.LAVA_POP);
                             }
                             break;
                         case 0:

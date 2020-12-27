@@ -87,15 +87,15 @@ public class ReportsCommand implements CommandExecutor {
                             p.openInventory(inv);
                         } else {
                             EnderAPI.getInstance().sendActionBar(p, "§7Dir §cwurde bereits §7ein Report zugewiesen§8!");
-                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                            EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         }
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§creports §8[§cnotify§8]");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                     }
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§7Du kannst diesen Befehl §cnur auf der SilentLobby §7verwenden§8!");
-                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                 }
             }
         }

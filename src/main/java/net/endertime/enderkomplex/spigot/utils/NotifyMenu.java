@@ -29,25 +29,25 @@ public class NotifyMenu implements Listener {
                                 Database.updateNotifySettings(p.getUniqueId(), NotifyType.REPORTS, true);
                                 e.getInventory().setItem(e.getRawSlot(), EnderAPI.getInstance().getItem(Material.EMERALD_BLOCK)
                                         .setDisplayName(e.getCurrentItem().getItemMeta().getDisplayName()).getItemStack());
-                                EnderAPI.getInstance().playSound(p, Sound.BLOCK_LEVER_CLICK);
+                                EnderAPI.getInstance().playSound(p, Sound.CLICK);
                                 break;
                             case 3:
                                 Database.updateNotifySettings(p.getUniqueId(), NotifyType.CONNECTION, true);
                                 e.getInventory().setItem(e.getRawSlot(), EnderAPI.getInstance().getItem(Material.EMERALD_BLOCK)
                                         .setDisplayName(e.getCurrentItem().getItemMeta().getDisplayName()).getItemStack());
-                                EnderAPI.getInstance().playSound(p, Sound.BLOCK_LEVER_CLICK);
+                                EnderAPI.getInstance().playSound(p, Sound.CLICK);
                                 break;
                             case 5:
                                 Database.updateNotifySettings(p.getUniqueId(), NotifyType.BANSYSTEM, true);
                                 e.getInventory().setItem(e.getRawSlot(), EnderAPI.getInstance().getItem(Material.EMERALD_BLOCK)
                                         .setDisplayName(e.getCurrentItem().getItemMeta().getDisplayName()).getItemStack());
-                                EnderAPI.getInstance().playSound(p, Sound.BLOCK_LEVER_CLICK);
+                                EnderAPI.getInstance().playSound(p, Sound.CLICK);
                                 break;
                             case 7:
                                 Database.updateNotifySettings(p.getUniqueId(), NotifyType.CHATFILTER, true);
                                 e.getInventory().setItem(e.getRawSlot(), EnderAPI.getInstance().getItem(Material.EMERALD_BLOCK)
                                         .setDisplayName(e.getCurrentItem().getItemMeta().getDisplayName()).getItemStack());
-                                EnderAPI.getInstance().playSound(p, Sound.BLOCK_LEVER_CLICK);
+                                EnderAPI.getInstance().playSound(p, Sound.CLICK);
                                 break;
                         }
                     } else if (e.getCurrentItem().getType().equals(Material.EMERALD_BLOCK)) {
@@ -56,31 +56,31 @@ public class NotifyMenu implements Listener {
                                 Database.updateNotifySettings(p.getUniqueId(), NotifyType.REPORTS, false);
                                 e.getInventory().setItem(e.getRawSlot(), EnderAPI.getInstance().getItem(Material.REDSTONE_BLOCK)
                                         .setDisplayName(e.getCurrentItem().getItemMeta().getDisplayName()).getItemStack());
-                                EnderAPI.getInstance().playSound(p, Sound.BLOCK_LEVER_CLICK);
+                                EnderAPI.getInstance().playSound(p, Sound.CLICK);
                                 break;
                             case 3:
                                 Database.updateNotifySettings(p.getUniqueId(), NotifyType.CONNECTION, false);
                                 e.getInventory().setItem(e.getRawSlot(), EnderAPI.getInstance().getItem(Material.REDSTONE_BLOCK)
                                         .setDisplayName(e.getCurrentItem().getItemMeta().getDisplayName()).getItemStack());
-                                EnderAPI.getInstance().playSound(p, Sound.BLOCK_LEVER_CLICK);
+                                EnderAPI.getInstance().playSound(p, Sound.CLICK);
                                 break;
                             case 5:
                                 Database.updateNotifySettings(p.getUniqueId(), NotifyType.BANSYSTEM, false);
                                 e.getInventory().setItem(e.getRawSlot(), EnderAPI.getInstance().getItem(Material.REDSTONE_BLOCK)
                                         .setDisplayName(e.getCurrentItem().getItemMeta().getDisplayName()).getItemStack());
-                                EnderAPI.getInstance().playSound(p, Sound.BLOCK_LEVER_CLICK);
+                                EnderAPI.getInstance().playSound(p, Sound.CLICK);
                                 break;
                             case 7:
                                 Database.updateNotifySettings(p.getUniqueId(), NotifyType.CHATFILTER, false);
                                 e.getInventory().setItem(e.getRawSlot(), EnderAPI.getInstance().getItem(Material.REDSTONE_BLOCK)
                                         .setDisplayName(e.getCurrentItem().getItemMeta().getDisplayName()).getItemStack());
-                                EnderAPI.getInstance().playSound(p, Sound.BLOCK_LEVER_CLICK);
+                                EnderAPI.getInstance().playSound(p, Sound.CLICK);
                                 break;
                         }
                     }
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§cDiese Option ist gesperrt§8!");
-                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                 }
             }
         }

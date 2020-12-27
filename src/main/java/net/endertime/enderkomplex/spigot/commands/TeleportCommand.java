@@ -21,10 +21,10 @@ public class TeleportCommand implements CommandExecutor {
                     Player target = Bukkit.getPlayer(args[0]);
                     if(target != null) {
                         p.teleport(target);
-                        EnderAPI.getInstance().playSound(p, Sound.ENTITY_ILLUSION_ILLAGER_MIRROR_MOVE);
+                        EnderAPI.getInstance().playSound(p, Sound.ENDERMAN_TELEPORT);
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Der Spieler §c" + args[0] + "§7 ist §cnicht §7online§8!");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                     }
                 } else if(args.length == 2) {
                     Player target1 = Bukkit.getPlayer(args[0]);
@@ -32,14 +32,14 @@ public class TeleportCommand implements CommandExecutor {
                     if(target1 != null) {
                         if(target2 != null) {
                             target1.teleport(target2);
-                            EnderAPI.getInstance().playSound(p, Sound.ENTITY_ILLUSION_ILLAGER_MIRROR_MOVE);
+                            EnderAPI.getInstance().playSound(p, Sound.ENDERMAN_TELEPORT);
                         } else {
                             EnderAPI.getInstance().sendActionBar(p, "§7Der Spieler §c" + args[1] + "§7 ist §cnicht §7online§8!");
-                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                            EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         }
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Der Spieler §c" + args[0] + "§7 ist §cnicht §7online§8!");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                     }
                 } else if(args.length == 3) {
                     int x = 0, y = 0, z = 0;
@@ -49,14 +49,14 @@ public class TeleportCommand implements CommandExecutor {
                         z = Integer.valueOf(args[2]);
                     } catch (NumberFormatException error) {
                         EnderAPI.getInstance().sendActionBar(p, "§cDeine Angabe ist ungültig§8!");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         return false;
                     }
                     p.teleport(new Location(p.getWorld(), x, y, z));
-                    EnderAPI.getInstance().playSound(p, Sound.ENTITY_ILLUSION_ILLAGER_MIRROR_MOVE);
+                    EnderAPI.getInstance().playSound(p, Sound.ENDERMAN_TELEPORT);
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§ctp §8<§cname§8> [<§cname§8>] §7oder §8/§ctp x y z");
-                    EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                    EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                 }
             }
         }

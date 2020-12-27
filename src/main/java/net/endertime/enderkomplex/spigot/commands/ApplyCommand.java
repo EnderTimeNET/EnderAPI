@@ -52,7 +52,7 @@ public class ApplyCommand implements CommandExecutor {
                         tsnumber = Integer.valueOf(args[0]);
                     } catch (NumberFormatException error) {
                         EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§capply §8<§cGesprächsnummer§8>");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         return false;
                     }
                     if(Database.isTS_NumberExist(tsnumber)) {
@@ -60,16 +60,16 @@ public class ApplyCommand implements CommandExecutor {
                             ApplyMenu.openAcceptInventory(p, tsnumber);
                         } else {
                             EnderAPI.getInstance().sendActionBar(p, "§7Über diese Gesprächsnummer §cwurde bereits §7entschieden§8!");
-                            EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                            EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                         }
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§7Diese Gesprächsnummer §cexistiert nicht§8!");
-                        EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                        EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
                     }
                 }
             } else {
                 EnderAPI.getInstance().sendActionBar(p, "§7Benutze: §8/§capply");
-                EnderAPI.getInstance().playSound(p, Sound.ITEM_SHIELD_BREAK);
+                EnderAPI.getInstance().playSound(p, Sound.ITEM_BREAK);
             }
         }
         return false;

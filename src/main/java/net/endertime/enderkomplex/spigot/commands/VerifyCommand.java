@@ -22,7 +22,7 @@ public class VerifyCommand implements CommandExecutor {
                     if(!Database.isUUIDExistVerify(p.getUniqueId())) {
                         Database.verify(p.getUniqueId());
                         EnderAPI.getInstance().sendActionBar(p, "§7Dein §6Verifizierungsantrag §7wurde an den §3TeamSpeak §7gesendet...");
-                        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, (float) 0.5, 1);
+                        p.playSound(p.getLocation(), Sound.LEVEL_UP, (float) 0.5, 1);
                         Bukkit.getScheduler().scheduleSyncDelayedTask(ServerData.Instance, new Runnable() {
 
                             @Override
@@ -30,22 +30,22 @@ public class VerifyCommand implements CommandExecutor {
                                 if(!Database.isVerified(p.getUniqueId())) {
                                     EnderAPI.getInstance().sendActionBar(p, "§7Es wurde §ckein gleichnamiger §7TeamSpeak Client gefunden!");
                                     Database.unverify(p.getUniqueId());
-                                    p.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, (float) 0.5, 1);
+                                    p.playSound(p.getLocation(), Sound.ITEM_BREAK, (float) 0.5, 1);
                                 }
 
                             }
                         }, 20*6);
                     } else {
                         EnderAPI.getInstance().sendActionBar(p, "§cDer Verifizierungsprozess läuft bereits!");
-                        p.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, (float) 0.5, 1);
+                        p.playSound(p.getLocation(), Sound.ITEM_BREAK, (float) 0.5, 1);
                     }
                 } else {
                     EnderAPI.getInstance().sendActionBar(p, "§7Du §cbist bereits §7verifiziert§8!");
-                    p.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, (float) 0.5, 1);
+                    p.playSound(p.getLocation(), Sound.ITEM_BREAK, (float) 0.5, 1);
                 }
             } else {
                 EnderAPI.getInstance().sendActionBar(p, "§7Benutze§8: /§cverify");
-                p.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, (float) 0.5, 1);
+                p.playSound(p.getLocation(), Sound.ITEM_BREAK, (float) 0.5, 1);
             }
         }
         return false;

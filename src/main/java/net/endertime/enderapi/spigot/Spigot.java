@@ -100,7 +100,6 @@ public class Spigot extends JavaPlugin {
         clearRecipes();
 
         if (CloudNetDriver.getInstance().getCloudServiceProvider().getCloudServiceByName("Proxy-1").getAddress().getPort() == 25565) {
-            BossbarHandler.startUpdater();
             AFKTimer.startTimer();
             new InfoFeed(this);
             registerNicks();
@@ -150,7 +149,6 @@ public class Spigot extends JavaPlugin {
             pm.registerEvents(new EditMenu(), this);
             pm.registerEvents(new ApplyMenu(), this);
             pm.registerEvents(new AFKTimer(), this);
-            pm.registerEvents(new NewsBossbar(), this);
         }
     }
 
