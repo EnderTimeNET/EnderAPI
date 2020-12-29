@@ -111,16 +111,15 @@ public class GameAPI {
 
     public boolean isCountdown() {
         if (bukkitTask != null) {
-            if (!bukkitTask.isCancelled())
-                return true;
+            return true;
         }
         return false;
     }
 
     public void stopCountdown() {
         if (bukkitTask != null) {
-            if (!bukkitTask.isCancelled())
-                bukkitTask.cancel();
+            bukkitTask.cancel();
+            bukkitTask = null;
         }
     }
 
