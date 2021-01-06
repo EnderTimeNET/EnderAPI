@@ -156,7 +156,6 @@ public class Spigot extends JavaPlugin {
         getCommand("addcoins").setExecutor(new AddCoins_Command());
         getCommand("removecoins").setExecutor(new RemoveCoins_Command());
         getCommand("resetcoins").setExecutor(new ResetCoins_Command());
-        getCommand("perm").setExecutor(new Perm_Command());
         getCommand("seeperm").setExecutor(new SeePerm_Command());
         getCommand("rank").setExecutor(new Rank_Command());
         getCommand("reset").setExecutor(new Reset_Command());

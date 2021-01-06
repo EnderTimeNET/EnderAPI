@@ -185,10 +185,10 @@ public class EnderAPI {
 
     private String noPerm = "§8§l┃ §5EnderTime §8» §7Der Befehl wurde nicht gefunden oder ist gesperrt!";
 
-    private String prefixFriend = "§8§l┃ §5Freunde §8» ";
-    private String prefixParty = "§8§l┃ §5Party §8» ";
-    private String consolePrefix = "§8[§5EnderAPI§8] ";
-    private String prefix = "§8§l┃ §5EnderAPI §8» ";
+    private String prefixFriend = "§8§l┃ §5Freunde §8» §7";
+    private String prefixParty = "§8§l┃ §5Party §8» §7";
+    private String consolePrefix = "§8[§5EnderAPI§8] §7";
+    private String prefix = "§8§l┃ §5EnderAPI §8» §7";
 
     public BaseComponent[] getMessage(String message) {
         return TextComponent.fromLegacyText(message);

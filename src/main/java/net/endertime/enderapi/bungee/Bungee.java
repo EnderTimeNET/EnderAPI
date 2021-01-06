@@ -120,6 +120,7 @@ public class Bungee extends Plugin {
             pm.registerCommand(this, new Party_Command("party", EnderAPI.getInstance().getPartyManager()));
             pm.registerCommand(this, new Clan_Command("c"));
             pm.registerCommand(this, new Clan_Command("clan"));
+            pm.registerCommand(this, new Perm_Command("perm"));
 
             pm.registerCommand(this, new BanCommand("ban"));
             pm.registerCommand(this, new MuteCommand("mute"));
