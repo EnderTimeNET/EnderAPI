@@ -1,20 +1,22 @@
 package net.endertime.enderapi.spigot.utils;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import de.dytanic.cloudnet.wrapper.Wrapper;
 import net.endertime.enderapi.clan.ClanAPI;
 import net.endertime.enderapi.spigot.api.EnderAPI;
 import net.endertime.enderapi.spigot.api.NickAPI;
 import net.endertime.enderapi.spigot.api.PartyAPI;
+import net.endertime.enderkomplex.mysql.Database;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ScoreBoard {
 
@@ -292,6 +294,46 @@ public class ScoreBoard {
 
     public void c() {
         sendPacket(getRemovePacket());
+    }
+
+    private String reportTeam = "000000Reports";
+    private String reportEntry = "Reports ";
+    private String reportPrefix = "§4§l";
+    private String reportSuffix = "1";
+
+    private void addReports () {
+        if (getScoreboardPTab().getTeam(reportTeam) == null) {
+            getScoreboardPTab().createTeam(reportTeam);
+            getScoreboardPTab().addPlayerToTeam(reportEntry, reportTeam);
+            getScoreboardPTab().getTeam(reportTeam).setPrefix(reportPrefix);
+            getScoreboardPTab().getTeam(reportTeam).setSuffix(reportSuffix);
+
+        } else {
+            if (getScoreboardPTab().getTeam(reportTeam).getPlayerNameSet().contains(reportEntry)) {
+                getScoreboardPTab().removePlayerFromTeam(reportEntry, getScoreboardPTab().getTeam(reportTeam));
+            }
+        }
+        getScoreboardPTab().addPlayerToTeam(reportEntry, reportTeam);
+        getScoreboardPTab().getTeam(reportTeam).setPrefix(reportPrefix);
+        getScoreboardPTab().getTeam(reportTeam).setSuffix(reportSuffix);
+
+
+        /*MinecraftServer minecraftServer = ((CraftServer) Bukkit.getServer()).getServer();
+        WorldServer worldServer = ((CraftWorld)player.getWorld()).getHandle();
+        final EntityPlayer entityPlayer = new EntityPlayer(minecraftServer, worldServer, getGameProfile(), new PlayerInteractManager(worldServer));
+
+        PacketPlayOutPlayerInfo packetPlayOutPlayerInfo = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER,
+                entityPlayer);
+        (((CraftPlayer)player).getHandle()).playerConnection.sendPacket(packetPlayOutPlayerInfo);*/
+    }
+
+    private GameProfile getGameProfile () {
+        GameProfile profile = new GameProfile(UUID.randomUUID(), "Reports: ");
+        profile.getProperties().removeAll("textures");
+        profile.getProperties().put("textures", new Property("textures", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90" +
+                "ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTVjZWQ5OTMxYWNlMjNhZm" +
+                "MzNTEzNzEzNzliZjA1YzYzNWFkMTg2OTQzYmMxMzY0NzRlNGU1MTU2YzRjMzcifX19", "signature"));
+        return profile;
     }
 
 }

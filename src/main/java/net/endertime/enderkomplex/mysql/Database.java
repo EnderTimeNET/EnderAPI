@@ -1565,7 +1565,7 @@ public class Database {
     private static String getRank(UUID uuid) {
         String rank = PermAPI.getInstance().getGroup(uuid);
         if(rank.equalsIgnoreCase("default")) rank = "Spieler";
-        if(rank.equalsIgnoreCase("JrSup")) rank = "Sup";
+        if(rank.equalsIgnoreCase("JrMod")) rank = "Mod";
         if(rank.equalsIgnoreCase("JrDev")) rank = "Dev";
         if(rank.equalsIgnoreCase("JrBuild")) rank = "Build";
         if(rank.equalsIgnoreCase("JrContent")) rank = "Content";

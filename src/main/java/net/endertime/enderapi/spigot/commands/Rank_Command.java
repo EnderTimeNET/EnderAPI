@@ -44,7 +44,8 @@ public class Rank_Command implements CommandExecutor, Listener {
                                                 + EnderAPI.getInstance().getPrefix(uuid) + EnderAPI.getInstance().getName(uuid));
 
                                         for (int i = 0; i < inv.getSize(); i++)
-                                            inv.setItem(i, EnderAPI.getInstance().getItem(Material.STAINED_GLASS_PANE,1, 15).setDisplayName("§7").getItemStack());
+                                            inv.setItem(i, EnderAPI.getInstance().getItem(Material.STAINED_GLASS_PANE,1, 15)
+                                                    .setDisplayName("§7").getItemStack());
 
                                         inv.setItem(1, EnderAPI.getInstance().getItem(Material.NAME_TAG).setDisplayName("§6Ender I")
                                                 .setLore(Arrays.asList(new String[]{"", "§7§lDauer:", "§8➟ §c3 Tage", ""})).getItemStack());
@@ -62,15 +63,18 @@ public class Rank_Command implements CommandExecutor, Listener {
                                     } else {
                                         if (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6Ender+")
                                                 || e.getCurrentItem().getItemMeta().getDisplayName().equals("§5YouTuber")) {
-                                            PermAPI.getInstance().setGroup(uuid, e.getCurrentItem().getItemMeta().getDisplayName().substring(2), 30 * 24 * 60 * 60 * 1000l);
+                                            PermAPI.getInstance().setGroup(uuid, e.getCurrentItem().getItemMeta().getDisplayName()
+                                                    .substring(2), 30 * 24 * 60 * 60 * 1000l);
                                         } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals("§7Spieler")) {
                                             PermAPI.getInstance().setGroup(uuid, "default", -1);
                                         } else {
-                                            PermAPI.getInstance().setGroup(uuid, e.getCurrentItem().getItemMeta().getDisplayName().substring(2), -1);
+                                            PermAPI.getInstance().setGroup(uuid, e.getCurrentItem().getItemMeta()
+                                                    .getDisplayName().substring(2), -1);
                                         }
                                         p.closeInventory();
                                         EnderAPI.getInstance().sendActionBar(p, "§7Du hast " + EnderAPI.getInstance().getPrefix(uuid)
-                                                + EnderAPI.getInstance().getName(uuid) + " §7den Rang " + e.getCurrentItem().getItemMeta().getDisplayName()
+                                                + EnderAPI.getInstance().getName(uuid) + " §7den Rang " + e.getCurrentItem()
+                                                .getItemMeta().getDisplayName()
                                                 + " §7gesetzt");
                                     }
                                 }
@@ -158,7 +162,8 @@ public class Rank_Command implements CommandExecutor, Listener {
     }
 
     public void openInv (Player player, UUID uuid) {
-        Inventory inv = Bukkit.createInventory(null, 9 * 6, "§7RankGUI von " + EnderAPI.getInstance().getPrefix(uuid) + EnderAPI.getInstance().getName(uuid));
+        Inventory inv = Bukkit.createInventory(null, 9 * 6, "§7RankGUI von " + EnderAPI.getInstance().getPrefix(uuid) +
+                EnderAPI.getInstance().getName(uuid));
 
         for (int i = 0; i < inv.getSize(); i++)
             inv.setItem(i, EnderAPI.getInstance().getItem(Material.STAINED_GLASS_PANE,1, 15).setDisplayName("§7").getItemStack());
@@ -195,14 +200,19 @@ public class Rank_Command implements CommandExecutor, Listener {
         inv.setItem(15, EnderAPI.getInstance().getItem(Material.BOOK).setDisplayName("§cContent").getItemStack());
         inv.setItem(24, EnderAPI.getInstance().getItem(Material.FEATHER).setDisplayName("§cJrContent").getItemStack());
 
-        inv.setItem(4, EnderAPI.getInstance().getItem(Material.DIAMOND_SWORD).addItemFlags(ItemFlag.HIDE_ATTRIBUTES).setDisplayName("§cSrMod").getItemStack());
-        inv.setItem(13, EnderAPI.getInstance().getItem(Material.GOLD_SWORD).addItemFlags(ItemFlag.HIDE_ATTRIBUTES).setDisplayName("§cMod").getItemStack());
-        inv.setItem(22, EnderAPI.getInstance().getItem(Material.IRON_SWORD).addItemFlags(ItemFlag.HIDE_ATTRIBUTES).setDisplayName("§cSup").getItemStack());
-        inv.setItem(31, EnderAPI.getInstance().getItem(Material.STONE_SWORD).addItemFlags(ItemFlag.HIDE_ATTRIBUTES).setDisplayName("§cJrSup").getItemStack());
+        inv.setItem(4, EnderAPI.getInstance().getItem(Material.DIAMOND_SWORD).addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
+                .setDisplayName("§cSrMod").getItemStack());
+        inv.setItem(13, EnderAPI.getInstance().getItem(Material.GOLD_SWORD).addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
+                .setDisplayName("§cMod").getItemStack());
+        inv.setItem(22, EnderAPI.getInstance().getItem(Material.STONE_SWORD).addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
+                .setDisplayName("§cJrMod").getItemStack());
 
-        inv.setItem(2, EnderAPI.getInstance().getItem(Material.DIAMOND_PICKAXE).addItemFlags(ItemFlag.HIDE_ATTRIBUTES).setDisplayName("§cSrBuild").getItemStack());
-        inv.setItem(11, EnderAPI.getInstance().getItem(Material.GOLD_PICKAXE).addItemFlags(ItemFlag.HIDE_ATTRIBUTES).setDisplayName("§cBuild").getItemStack());
-        inv.setItem(20, EnderAPI.getInstance().getItem(Material.STONE_PICKAXE).addItemFlags(ItemFlag.HIDE_ATTRIBUTES).setDisplayName("§cJrBuild").getItemStack());
+        inv.setItem(2, EnderAPI.getInstance().getItem(Material.DIAMOND_PICKAXE).addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
+                .setDisplayName("§cSrBuild").getItemStack());
+        inv.setItem(11, EnderAPI.getInstance().getItem(Material.GOLD_PICKAXE).addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
+                .setDisplayName("§cBuild").getItemStack());
+        inv.setItem(20, EnderAPI.getInstance().getItem(Material.STONE_PICKAXE).addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
+                .setDisplayName("§cJrBuild").getItemStack());
 
         inv.setItem(1, EnderAPI.getInstance().getItem(Material.MAP).setDisplayName("§cSrDesign").getItemStack());
         inv.setItem(10, EnderAPI.getInstance().getItem(Material.EMPTY_MAP).setDisplayName("§cDesign").getItemStack());
@@ -232,14 +242,12 @@ public class Rank_Command implements CommandExecutor, Listener {
             inv.setItem(25, EnderAPI.getInstance().getItem(inv.getItem(25)).setHideEnchantments().getItemStack());
         } else if (PermAPI.getInstance().getGroup(uuid).equalsIgnoreCase("JrContent")) {
             inv.setItem(24, EnderAPI.getInstance().getItem(inv.getItem(24)).setHideEnchantments().getItemStack());
-        } else if (PermAPI.getInstance().getGroup(uuid).equalsIgnoreCase("Sup")) {
+        } else if (PermAPI.getInstance().getGroup(uuid).equalsIgnoreCase("JrMod")) {
             inv.setItem(22, EnderAPI.getInstance().getItem(inv.getItem(22)).setHideEnchantments().getItemStack());
         } else if (PermAPI.getInstance().getGroup(uuid).equalsIgnoreCase("JrBuild")) {
             inv.setItem(20, EnderAPI.getInstance().getItem(inv.getItem(20)).setHideEnchantments().getItemStack());
         } else if (PermAPI.getInstance().getGroup(uuid).equalsIgnoreCase("JrDesign")) {
             inv.setItem(19, EnderAPI.getInstance().getItem(inv.getItem(19)).setHideEnchantments().getItemStack());
-        } else if (PermAPI.getInstance().getGroup(uuid).equalsIgnoreCase("JrSup")) {
-            inv.setItem(31, EnderAPI.getInstance().getItem(inv.getItem(31)).setHideEnchantments().getItemStack());
         } else if (PermAPI.getInstance().getGroup(uuid).equalsIgnoreCase("Partner")) {
             inv.setItem(52, EnderAPI.getInstance().getItem(inv.getItem(52)).setHideEnchantments().getItemStack());
         } else if (PermAPI.getInstance().getGroup(uuid).equalsIgnoreCase("YouTuber")) {

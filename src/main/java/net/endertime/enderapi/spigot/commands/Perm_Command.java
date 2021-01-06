@@ -149,9 +149,8 @@ public class Perm_Command implements CommandExecutor {
             } else {
                 if (args.length >= 4) {
                     String arg1 = args[0];
-                    String name = args[1];
                     if (arg1.equalsIgnoreCase("user")) {
-                        UUID uuid = EnderAPI.getInstance().getUUID(name);
+                        UUID uuid = UUID.fromString(args[1]);
                         if (uuid != null) {
                             String arg2 = args[2];
                             if (arg2.equalsIgnoreCase("set")) {
@@ -170,8 +169,6 @@ public class Perm_Command implements CommandExecutor {
                                             + " §7die Permission " + "§c" + permission + " §7gegeben");
                                 }
                             }
-                        } else {
-                            commandSender.sendMessage(EnderAPI.getInstance().getPrefix() + "§c" + name + " §7war noch §cnie §7auf dem Netzwerk");
                         }
                     }
                 } else {
