@@ -17,13 +17,13 @@ import java.util.*;
 
 public enum Stats {
 
-    ONEVSONE(Arrays.asList(new String[]{}), "§e1vs1", ""),
-    SNOWBATTLE(Arrays.asList(new String[]{}), "§fSnowBattle", "SNOWBATTLE"),
-    KBFFA(Arrays.asList(new String[]{"ITEMSUSED"}), "§cKBFFA", "KBFFA"),
-    OITC(Arrays.asList(new String[]{}), "§cOITC", "OITC"),
-    DESTRUCTION(Arrays.asList(new String[]{"ITEMSUSED"}), "§4Destruction", "DESTRUCTION"),
-    BEDWARS(Arrays.asList(new String[]{"BEDSDESTROYED"}), "§5BedWars", "BW"),
-    SPEEDUHC(Arrays.asList(new String[]{}), "§5SpeedUHC", "SPEEDUHC");
+    ONEVSONE(Arrays.asList(), "§e1vs1", ""),
+    SNOWBATTLE(Arrays.asList(), "§fSnowBattle", "SNOWBATTLE"),
+    KBFFA(Arrays.asList("ITEMSUSED"), "§cKBFFA", "KBFFA"),
+    OITC(Arrays.asList(), "§cOITC", "OITC"),
+    DESTRUCTION(Arrays.asList("ITEMSUSED"), "§4Destruction", "DESTRUCTION"),
+    BEDWARS(Arrays.asList("BEDSDESTROYED"), "§5BedWars", "BW"),
+    SPEEDUHC(Arrays.asList(), "§5SpeedUHC", "SPEEDUHC");
 
     private List<String> special;
     private MySQL mysql;
@@ -322,8 +322,6 @@ public enum Stats {
         } else if (Wrapper.getInstance().getServiceId().getName().startsWith("BW")) {
             return BEDWARS;
         } else if (Wrapper.getInstance().getServiceId().getName().startsWith("SpeedUHC")) {
-            return SPEEDUHC;
-        } else if (Wrapper.getInstance().getServiceId().getName().startsWith("Gameserver")) {
             return SPEEDUHC;
         } else {
             return null;

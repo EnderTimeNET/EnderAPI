@@ -15,17 +15,22 @@ public enum Group {
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.eventserver",
-            Arrays.asList(new String[]{"Event"}), 0, "§6EventServer", "§6§l"),
-    JUMPDUELL(EnderAPI.getInstance().getItem(Material.LEATHER_BOOTS).setDisplayName("§e§lJumpDuell")
+            Arrays.asList(new String[]{"Event"}), 47, "§6EventServer", "§6§l"),
+    AMONGUS(EnderAPI.getInstance().getItem(Material.FIREWORK).setDisplayName("§4§lAmong§f§lUs")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
-            .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.jumpduell",
-            Arrays.asList(new String[]{"JumpDuell"}), 3, "§eJumpDuell", "§e§l"),
+            .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.amongus",
+            Arrays.asList(new String[]{"AmongUs"}), 19, "§4Among§fUs", "§4§l"),
+    SPEEDUHC(EnderAPI.getInstance().getItem(Material.LEATHER_BOOTS).setDisplayName("§e§lSpeed§6§lUHC")
+            .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
+            .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
+            .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.speeduhc",
+            Arrays.asList(new String[]{"SpeeduHC"}), 23, "§eSpeed§6UHC", "§e§l"),
     SNOWBATTLE(EnderAPI.getInstance().getItem(Material.SNOW_BALL).setDisplayName("§f§lSnowBattle")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.snowbattle",
-            Arrays.asList(new String[]{"SnowBattle"}), 5, "§fSnowBattle", "§f§l"),
+            Arrays.asList(new String[]{"SnowBattle"}), 11, "§fSnowBattle", "§f§l"),
     LOBBY(EnderAPI.getInstance().getItem(Material.SULPHUR).setDisplayName("§5§lLobby")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
@@ -36,12 +41,7 @@ public enum Group {
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).setHideEnchantments()
             .getItemStack(), "restart.group.kbffa"
-            , Arrays.asList(new String[]{"KBFFA"}), 11, "§cKBFFA", "§c§l"),
-    SPEEDUHC(EnderAPI.getInstance().getItem(Material.GOLDEN_APPLE).setDisplayName("§5§lSpeedUHC")
-            .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
-            .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
-            .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.speeduhc",
-            Arrays.asList(new String[]{"SpeedUHC"}), 15, "§5SpeedUHC", "§5§l"),
+            , Arrays.asList(new String[]{"KBFFA"}), 25, "§cKBFFA", "§c§l"),
     PROXY(EnderAPI.getInstance().getItem(Material.COMMAND).setDisplayName("§4§lProxy")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
@@ -52,27 +52,22 @@ public enum Group {
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.oitc",
-            Arrays.asList(new String[]{"OITC"}), 29, "§cOITC", "§c§l"),
+            Arrays.asList(new String[]{"OITC"}), 21, "§cOITC", "§c§l"),
     DESTRUCTION(EnderAPI.getInstance().getItem(Material.ANVIL, 1, 2).setDisplayName("§4§lDestruction")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.destruction",
-            Arrays.asList(new String[]{"Destruction"}), 33, "§4Destruction", "§4§l"),
+            Arrays.asList(new String[]{"Destruction"}), 13, "§4Destruction", "§4§l"),
     VORBAUEN(EnderAPI.getInstance().getItem(Material.GOLD_PICKAXE).setDisplayName("§6§lVorbauen")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.vorbauen",
-            Arrays.asList(new String[]{"Vorbauen"}), 36, "§6Vorbauen", "§6§l"),
-    TERRA(EnderAPI.getInstance().getItem(Material.GRASS).setDisplayName("§b§lTerra")
-            .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
-            .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
-            .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.terra",
-            Arrays.asList(new String[]{"Terra"}), 39, "§bTerra", "§b§l"),
+            Arrays.asList(new String[]{"Vorbauen"}), 37, "§6Vorbauen", "§6§l"),
     BW(EnderAPI.getInstance().getItem(Material.BED, 1, 14).setDisplayName("§5§lBedWars")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.bedwars",
-            Arrays.asList(new String[]{"BW8x1", "BW4x2", "BW4x4"}), 41, "§5BedWars", "§5§l"),
+            Arrays.asList(new String[]{"BW8x1", "BW4x2", "BW4x4"}), 15, "§5BedWars", "§5§l"),
     SILENTLOBBY(EnderAPI.getInstance().getItem(Material.TNT).setDisplayName("§5§lSilentLobby")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
@@ -130,7 +125,7 @@ public enum Group {
             case 0:
                 return EVENTSERVER;
             case 3:
-                return JUMPDUELL;
+                return AMONGUS;
             case 5:
                 return SNOWBATTLE;
             case 8:
@@ -147,8 +142,6 @@ public enum Group {
                 return DESTRUCTION;
             case 36:
                 return VORBAUEN;
-            case 39:
-                return TERRA;
             case 41:
                 return BW;
             case 44:
@@ -160,7 +153,7 @@ public enum Group {
 
     public static void fillGroups () {
         groups.add(EVENTSERVER);
-        groups.add(JUMPDUELL);
+        groups.add(AMONGUS);
         groups.add(SNOWBATTLE);
         groups.add(LOBBY);
         groups.add(KBFFA);
@@ -169,7 +162,6 @@ public enum Group {
         groups.add(OITC);
         groups.add(DESTRUCTION);
         groups.add(VORBAUEN);
-        groups.add(TERRA);
         groups.add(BW);
         groups.add(SILENTLOBBY);
     }
