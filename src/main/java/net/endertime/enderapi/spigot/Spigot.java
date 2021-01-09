@@ -179,7 +179,6 @@ public class Spigot extends JavaPlugin {
             getCommand("v").setExecutor(new VanishCommand());
             getCommand("reports").setExecutor(new ReportsCommand());
             getCommand("notifys").setExecutor(new NotifysCommand());
-            getCommand("ec").setExecutor(new EnderchestCommand());
             getCommand("invsee").setExecutor(new InvseeCommand());
             getCommand("tp").setExecutor(new TeleportCommand());
             getCommand("em").setExecutor(new EditMuteCommand());
