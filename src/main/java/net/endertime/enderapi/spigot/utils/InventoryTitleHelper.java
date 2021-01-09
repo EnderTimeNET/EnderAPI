@@ -78,7 +78,7 @@ public class InventoryTitleHelper {
             sendPacket15a16a17(nms_PlayerConnection, nms_EntityPlayer, nms_Container, windowId, inventory, title, false);
         } else if (version.startsWith("v1_7_")) {
             sendPacket15a16a17(nms_PlayerConnection, nms_EntityPlayer, nms_Container, windowId, inventory, title, true);
-        } else if (version.equals("v1_8_R1") || version.equals("v1_8_R2")) {
+        } else if (version.equals("v1_8_R1") || version.equals("v1_8_R2") || version.equals("v1_8_R3")) {
             sendPacket18(nms_PlayerConnection, nms_EntityPlayer, nms_Container, windowId, inventory, title);
         }
     }
