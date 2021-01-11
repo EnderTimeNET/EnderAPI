@@ -1060,7 +1060,6 @@ public class EnderAPI {
     }
 
     public void hidePlayer (Player p, Player hide) {
-        //p.hidePlayer(getPlugin(), hide);
         PacketPlayOutEntityDestroy entityDestroyPacket = new PacketPlayOutEntityDestroy(((CraftPlayer)hide).getEntityId());
         PacketPlayOutPlayerInfo playerInfoRemovePacket = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER,
                 ((CraftPlayer)hide).getHandle());
@@ -1069,7 +1068,6 @@ public class EnderAPI {
     }
 
     public void showPlayer (Player p, Player show) {
-        //p.showPlayer(getPlugin(), show);
         PacketPlayOutNamedEntitySpawn entitySpawnPacket = new PacketPlayOutNamedEntitySpawn(((CraftPlayer)show).getHandle());
         PacketPlayOutPlayerInfo playerInfoAddPacket = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER,
                 ((CraftPlayer)show).getHandle());
@@ -1078,10 +1076,26 @@ public class EnderAPI {
 
         (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(playerInfoAddPacket);
         (((CraftPlayer)p).getHandle()).playerConnection.sendPacket(entitySpawnPacket);
+
+        PacketPlayOutEntity.PacketPlayOutEntityLook packet = new PacketPlayOutEntity.
+                PacketPlayOutEntityLook(((CraftPlayer)show).getEntityId(), getFixRotation(show.getLocation().getYaw()),
+                getFixRotation(show.getLocation().getPitch()), true);
+        PacketPlayOutEntityHeadRotation packetHead = new PacketPlayOutEntityHeadRotation();
+        setValue(packetHead, "a", ((CraftPlayer)show).getEntityId());
+        setValue(packetHead, "b", getFixRotation(show.getLocation().getYaw()));
+
+
+
+        sendPacket(packet, p);
+        sendPacket(packetHead, p);
         equip((((CraftPlayer)show).getHandle()).getId(), 1, (((CraftPlayer)show).getHandle()).getEquipment(1), p);
         equip((((CraftPlayer)show).getHandle()).getId(), 2, (((CraftPlayer)show).getHandle()).getEquipment(2), p);
         equip((((CraftPlayer)show).getHandle()).getId(), 3, (((CraftPlayer)show).getHandle()).getEquipment(3), p);
         equip((((CraftPlayer)show).getHandle()).getId(), 4, (((CraftPlayer)show).getHandle()).getEquipment(4), p);
+    }
+
+    public byte getFixRotation(float yawpitch){
+        return (byte) ((int) (yawpitch * 256.0F / 360.0F));
     }
 
     public void sendPacket(Packet<?> packet, Player player){

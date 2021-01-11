@@ -294,11 +294,15 @@ public class ScoreBoard {
     }
 
     private String reportTeam = "000000Reports";
-    private String reportEntry = "Reports ";
+    private String reportEntry = "Reports";
     private String reportPrefix = "§4§l";
     private String reportSuffix = "1";
 
     private void addReports () {
+        NPC npc = new NPC("Reports", player.getLocation());
+        npc.spawn();
+        //npc.destroy();
+
         if (getScoreboardPTab().getTeam(reportTeam) == null) {
             getScoreboardPTab().createTeam(reportTeam);
             getScoreboardPTab().addPlayerToTeam(reportEntry, reportTeam);
@@ -313,15 +317,6 @@ public class ScoreBoard {
         getScoreboardPTab().addPlayerToTeam(reportEntry, reportTeam);
         getScoreboardPTab().getTeam(reportTeam).setPrefix(reportPrefix);
         getScoreboardPTab().getTeam(reportTeam).setSuffix(reportSuffix);
-
-
-        /*MinecraftServer minecraftServer = ((CraftServer) Bukkit.getServer()).getServer();
-        WorldServer worldServer = ((CraftWorld)player.getWorld()).getHandle();
-        final EntityPlayer entityPlayer = new EntityPlayer(minecraftServer, worldServer, getGameProfile(), new PlayerInteractManager(worldServer));
-
-        PacketPlayOutPlayerInfo packetPlayOutPlayerInfo = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER,
-                entityPlayer);
-        (((CraftPlayer)player).getHandle()).playerConnection.sendPacket(packetPlayOutPlayerInfo);*/
     }
 
     private GameProfile getGameProfile () {
