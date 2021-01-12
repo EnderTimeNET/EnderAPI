@@ -8,6 +8,9 @@ import net.md_5.bungee.config.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Class created by qlow | Jan
+ */
 public class BungeecordLabyModConfig extends LabyModConfig {
     private Configuration configuration;
 

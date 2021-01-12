@@ -7,6 +7,9 @@ import net.md_5.bungee.api.plugin.Event;
 import java.beans.ConstructorProperties;
 import java.util.List;
 
+/**
+ * Class created by qlow | Jan
+ */
 public class LabyModPlayerJoinEvent extends Event {
     private ProxiedPlayer player;
 

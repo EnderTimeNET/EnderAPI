@@ -10,6 +10,9 @@ import java.beans.ConstructorProperties;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class created by qlow | Jan
+ */
 public class PermissionsSendEvent extends Event implements Cancellable {
     @ConstructorProperties({"player", "permissions", "cancelled"})
     public PermissionsSendEvent(Player player, Map<Permission, Boolean> permissions, boolean cancelled) {

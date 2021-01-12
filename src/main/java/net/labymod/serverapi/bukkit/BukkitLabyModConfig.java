@@ -7,6 +7,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Class created by qlow | Jan
+ */
 public class BukkitLabyModConfig extends LabyModConfig {
     private FileConfiguration fileConfiguration;
 

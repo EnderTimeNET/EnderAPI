@@ -6,6 +6,9 @@ import net.md_5.bungee.api.plugin.Event;
 
 import java.beans.ConstructorProperties;
 
+/**
+ * Class created by qlow | Jan
+ */
 public class MessageReceiveEvent extends Event {
     private ProxiedPlayer player;
 

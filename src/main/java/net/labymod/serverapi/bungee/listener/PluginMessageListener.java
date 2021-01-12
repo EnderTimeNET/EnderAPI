@@ -19,6 +19,9 @@ import net.md_5.bungee.event.EventHandler;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Class created by qlow | Jan
+ */
 public class PluginMessageListener implements Listener {
     public static JsonParser getJsonParser() {
         return jsonParser;

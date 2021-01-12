@@ -7,6 +7,9 @@ import org.bukkit.event.HandlerList;
 
 import java.beans.ConstructorProperties;
 
+/**
+ * Class created by qlow | Jan
+ */
 public class MessageReceiveEvent extends Event {
     @ConstructorProperties({"player", "messageKey", "jsonElement"})
     public MessageReceiveEvent(Player player, String messageKey, JsonElement jsonElement) {

@@ -9,6 +9,9 @@ import java.beans.ConstructorProperties;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class created by qlow | Jan
+ */
 public class PermissionsSendEvent extends Event implements Cancellable {
     private ProxiedPlayer player;
 

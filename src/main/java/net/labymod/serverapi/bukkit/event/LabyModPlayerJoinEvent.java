@@ -8,6 +8,9 @@ import org.bukkit.event.HandlerList;
 import java.beans.ConstructorProperties;
 import java.util.List;
 
+/**
+ * Class created by qlow | Jan
+ */
 public class LabyModPlayerJoinEvent extends Event {
     @ConstructorProperties({"player", "modVersion", "chunkCachingEnabled", "chunkCachingVersion", "addons"})
     public LabyModPlayerJoinEvent(Player player, String modVersion, boolean chunkCachingEnabled, int chunkCachingVersion, List<Addon> addons) {

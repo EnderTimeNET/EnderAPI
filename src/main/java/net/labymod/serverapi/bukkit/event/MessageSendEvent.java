@@ -8,6 +8,9 @@ import org.bukkit.event.HandlerList;
 
 import java.beans.ConstructorProperties;
 
+/**
+ * Class created by qlow | Jan
+ */
 public class MessageSendEvent extends Event implements Cancellable {
     @ConstructorProperties({"player", "messageKey", "jsonElement", "cancelled"})
     public MessageSendEvent(Player player, String messageKey, JsonElement jsonElement, boolean cancelled) {
