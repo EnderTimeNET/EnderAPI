@@ -39,7 +39,7 @@ public class Restart_Command implements CommandExecutor, Listener {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (player.hasPermission("restart.use")) {
-                Inventory inventory = Bukkit.createInventory(null, 9 * 5, "§cRestart§8-§cMenu");
+                Inventory inventory = Bukkit.createInventory(null, 9 * 6, "§cRestart§8-§cMenu");
 
                 for (Group group : Group.getGroups()) {
                     if (player.hasPermission(group.getPermission())) {

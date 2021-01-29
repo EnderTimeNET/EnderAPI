@@ -15,8 +15,8 @@ public enum Group {
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.eventserver",
-            Arrays.asList(new String[]{"Event"}), 47, "§6EventServer", "§6§l"),
-    AMONGUS(EnderAPI.getInstance().getItem(Material.FIREWORK).setDisplayName("§4§lAmong§f§lUs")
+            Arrays.asList(new String[]{"Event"}), 43, "§6EventServer", "§6§l"),
+    AMONGUS(EnderAPI.getInstance().getItem(Material.EMPTY_MAP).setDisplayName("§4§lAmong§f§lUs")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.amongus",
@@ -35,7 +35,7 @@ public enum Group {
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.lobby",
-            Arrays.asList(new String[]{"Lobby"}), 8, "§5Lobby", "§5§l"),
+            Arrays.asList(new String[]{"Lobby"}), 39, "§5Lobby", "§5§l"),
     KBFFA(EnderAPI.getInstance().getItem(Material.STICK).setDisplayName("§c§lKBFFA")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
@@ -47,7 +47,7 @@ public enum Group {
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS)
             .getItemStack(), "restart.group.proxy",
-            Arrays.asList(new String[]{"Proxy"}), 22, "§4Proxy", "§4§l"),
+            Arrays.asList(new String[]{"Proxy"}), 49, "§4Proxy", "§4§l"),
     OITC(EnderAPI.getInstance().getItem(Material.ARROW).setDisplayName("§c§lOITC")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
@@ -63,7 +63,7 @@ public enum Group {
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.vorbauen",
             Arrays.asList(new String[]{"Vorbauen"}), 37, "§6Vorbauen", "§6§l"),
-    BW(EnderAPI.getInstance().getItem(Material.BED, 1, 14).setDisplayName("§5§lBedWars")
+    BW(EnderAPI.getInstance().getItem(Material.BED, 1, 0).setDisplayName("§5§lBedWars")
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.bedwars",
@@ -72,7 +72,7 @@ public enum Group {
             .addItemFlags(ItemFlag.HIDE_ATTRIBUTES).addItemFlags(ItemFlag.HIDE_DESTROYS)
             .addItemFlags(ItemFlag.HIDE_UNBREAKABLE).addItemFlags(ItemFlag.HIDE_PLACED_ON)
             .addItemFlags(ItemFlag.HIDE_POTION_EFFECTS).addItemFlags(ItemFlag.HIDE_ENCHANTS).getItemStack(), "restart.group.silentlobby",
-            Arrays.asList(new String[]{"SilentLobby"}), 44, "§5SilentLobby", "§5§l");
+            Arrays.asList(new String[]{"SilentLobby"}), 41, "§5SilentLobby", "§5§l");
 
     private ItemStack itemStack;
     private String permission;
@@ -122,30 +122,30 @@ public enum Group {
 
     public static Group getGroup (int slot) {
         switch (slot) {
-            case 0:
-                return EVENTSERVER;
-            case 3:
-                return AMONGUS;
-            case 5:
-                return SNOWBATTLE;
-            case 8:
-                return LOBBY;
             case 11:
-                return KBFFA;
-            case 15:
-                return SPEEDUHC;
-            case 22:
-                return PROXY;
-            case 29:
-                return OITC;
-            case 33:
+                return SNOWBATTLE;
+            case 13:
                 return DESTRUCTION;
-            case 36:
-                return VORBAUEN;
-            case 41:
+            case 15:
                 return BW;
-            case 44:
+            case 19:
+                return AMONGUS;
+            case 21:
+                return OITC;
+            case 23:
+                return SPEEDUHC;
+            case 25:
+                return KBFFA;
+            case 37:
+                return VORBAUEN;
+            case 39:
+                return LOBBY;
+            case 41:
                 return SILENTLOBBY;
+            case 43:
+                return EVENTSERVER;
+            case 49:
+                return PROXY;
             default:
                 return null;
         }

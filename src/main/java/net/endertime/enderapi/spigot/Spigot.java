@@ -49,9 +49,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Spigot extends JavaPlugin {
 
@@ -97,25 +95,31 @@ public class Spigot extends JavaPlugin {
             NickAPI.getInstance().registerNickEvent();
         }
 
-        clearRecipes();
-
         if (CloudNetDriver.getInstance().getCloudServiceProvider().getCloudServiceByName("Proxy-1").getAddress().getPort() == 25565) {
             AFKTimer.startTimer();
             new InfoFeed(this);
             registerNicks();
             Group.fillGroups();
         }
+
+        startReportScheduler();
+    }
+
+    public static List<Player> reports = new ArrayList<>();
+
+    private void startReportScheduler() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+            @Override
+            public void run() {
+                Iterator<Player> playerIterator = reports.iterator();
+                while (playerIterator.hasNext())
+                    EnderAPI.getInstance().sendActionBar(playerIterator.next(), "§7Reports: §40 Wie bekomme ich die?");
+            }
+        }, 45, 45);
     }
 
     private void registerNicks() {
         NickAPI.getInstance().setNicks(EnderAPI.getInstance().getNickDatabase().countRowsInTable());
-    }
-
-    private void clearRecipes(){
-        if (!Wrapper.getInstance().getServiceId().getName().startsWith("Terra")
-                && !Wrapper.getInstance().getServiceId().getName().startsWith("SpeedUHC")) {
-            Bukkit.clearRecipes();
-        }
     }
 
     private void registerEvents(final PluginManager pm) {

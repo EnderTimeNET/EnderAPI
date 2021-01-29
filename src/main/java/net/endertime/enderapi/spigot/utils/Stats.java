@@ -17,13 +17,13 @@ import java.util.*;
 
 public enum Stats {
 
-    ONEVSONE(Arrays.asList(), "§e1vs1", ""),
+    AMONGUS(Arrays.asList(), "§4AAmong§fUs", ""),
     SNOWBATTLE(Arrays.asList(), "§fSnowBattle", "SNOWBATTLE"),
-    KBFFA(Arrays.asList("ITEMSUSED"), "§cKBFFA", "KBFFA"),
+    KBFFA(Arrays.asList("ITEMSUSED"), "§aKnockback§2FFFA", "KBFFA"),
     OITC(Arrays.asList(), "§cOITC", "OITC"),
     DESTRUCTION(Arrays.asList("ITEMSUSED"), "§4Destruction", "DESTRUCTION"),
     BEDWARS(Arrays.asList("BEDSDESTROYED"), "§5BedWars", "BW"),
-    SPEEDUHC(Arrays.asList(), "§5SpeedUHC", "SPEEDUHC");
+    SPEEDUHC(Arrays.asList(), "§eSpeed§6UHC", "SPEEDUHC");
 
     private List<String> special;
     private MySQL mysql;
@@ -309,8 +309,8 @@ public enum Stats {
     }
 
     public static Stats getStats () {
-        if (Wrapper.getInstance().getServiceId().getName().startsWith("1vs1")) {
-            return ONEVSONE;
+        if (Wrapper.getInstance().getServiceId().getName().startsWith("AmongUs")) {
+            return AMONGUS;
         } else if (Wrapper.getInstance().getServiceId().getName().startsWith("SnowBattle")) {
             return SNOWBATTLE;
         } else if (Wrapper.getInstance().getServiceId().getName().startsWith("KBFFA")) {
@@ -331,7 +331,7 @@ public enum Stats {
     public static List<Stats> getAllStats () {
         List<Stats> list = new ArrayList<>();
 
-        list.add(ONEVSONE);
+        list.add(AMONGUS);
         list.add(SNOWBATTLE);
         list.add(KBFFA);
         list.add(OITC);

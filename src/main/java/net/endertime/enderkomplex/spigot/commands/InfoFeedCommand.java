@@ -18,12 +18,14 @@ public class InfoFeedCommand implements CommandExecutor {
         if(label.equalsIgnoreCase("if")) {
             if(p.hasPermission("ek.commands.cps")) {
                 if(args.length == 0) {
-                    EnderAPI.getInstance().getNoActionbar().remove(p);
+                    if (EnderAPI.getInstance().getNoActionbar().contains(p))
+                        EnderAPI.getInstance().getNoActionbar().remove(p);
                     InfoFeed.unsetTargets(p);
                     EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP, 2);
                 } else if(args.length == 1) {
                     if(Bukkit.getPlayer(args[0]) != null) {
-                        EnderAPI.getInstance().getNoActionbar().add(p);
+                        if (!EnderAPI.getInstance().getNoActionbar().contains(p))
+                            EnderAPI.getInstance().getNoActionbar().add(p);
                         InfoFeed.setTarget(p, Bukkit.getPlayer(args[0]));
                         EnderAPI.getInstance().playSound(p, Sound.LEVEL_UP, 2);
                     } else {

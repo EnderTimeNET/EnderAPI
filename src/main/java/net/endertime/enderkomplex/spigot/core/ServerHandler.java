@@ -91,7 +91,8 @@ public class ServerHandler {
     }
 
     public static void sendActionbar(Player p, String message) {
-        EnderAPI.getInstance().sendActionBar(p, message);
+        PacketPlayOutChat packet = new PacketPlayOutChat(new ChatComponentText(message), (byte)2);
+        ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
     }
 
     public static Material getMaterial(BanReason br) {

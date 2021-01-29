@@ -74,7 +74,7 @@ public class Reset_Command implements CommandExecutor, Listener {
     }
 
     private void reset(UUID uuid, Stats stats) {
-        if (!stats.equals(Stats.ONEVSONE)) {
+        if (!stats.equals(Stats.AMONGUS)) {
             delete(uuid, stats.getMysql(), stats.getName() + "_ALLTIME");
             delete(uuid, stats.getMysql(), stats.getName() + "_MONTHLY");
         }

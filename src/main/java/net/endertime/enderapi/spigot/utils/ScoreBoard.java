@@ -301,7 +301,7 @@ public class ScoreBoard {
     private void addReports () {
         NPC npc = new NPC("Reports", player.getLocation());
         npc.spawn();
-        //npc.destroy();
+        npc.destroy();
 
         if (getScoreboardPTab().getTeam(reportTeam) == null) {
             getScoreboardPTab().createTeam(reportTeam);
