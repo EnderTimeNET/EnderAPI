@@ -69,6 +69,7 @@ public class GameAPI {
     }
 
     public void setSpectator(Player player) {
+        player.setGameMode(GameMode.SPECTATOR);
         player.getInventory().clear();
 
         player.setHealth(20);
@@ -98,7 +99,7 @@ public class GameAPI {
 
         for (Player all : Bukkit.getOnlinePlayers()) {
             if (!all.getGameMode().equals(GameMode.SPECTATOR)) {
-                if (EnderAPI.getInstance().isVanished(all)) {
+                if (!EnderAPI.getInstance().isVanished(all)) {
                     player.getInventory().addItem(EnderAPI.getInstance().getSkull(player, all.getUniqueId())
                             .setLore(Arrays.asList(new String[] {"§7Klicke um dich ", "§7zu teleportieren"})).getItemStack());
                 }
@@ -135,7 +136,7 @@ public class GameAPI {
                         case 25:
                         case 20:
                         case 15:
-                        case 10:
+                        case 5:
                         case 4:
                         case 3:
                         case 2:
@@ -144,7 +145,7 @@ public class GameAPI {
                                 EnderAPI.getInstance().playSound(all, Sound.NOTE_PLING, 0F);
                             }
                             break;
-                        case 5:
+                        case 10:
                             Bukkit.getPluginManager().callEvent(new MapSetupEvent());
                             for (Player all : Bukkit.getOnlinePlayers()) {
                                 EnderAPI.getInstance().sendActionBar(all, "§7Das Spiel beginnt in §6" + countdown + " §7Sekunden");

@@ -173,17 +173,11 @@ public class Perm_Command extends Command {
                                 if (PermAPI.getInstance().getRanks().isRankExists(rank)) {
                                     long time = Long.parseLong(args[4]);
                                     PermAPI.getInstance().setGroup(uuid, rank, time);
-                                    commandSender.sendMessage(EnderAPI.getInstance().getPrefix() +
-                                            "Du hast §c" + EnderAPI.getInstance().getName(uuid)
-                                            + " §7die Gruppe " + "§c" + rank + " §7gegeben");
                                 }
                             } else if (arg2.equalsIgnoreCase("add")) {
                                 String permission = args[3];
                                 if (args.length == 4) {
                                     PermAPI.getInstance().getUserPermissions().addPermission(uuid, permission);
-                                    commandSender.sendMessage(EnderAPI.getInstance().getPrefix() +
-                                            "Du hast §c" + EnderAPI.getInstance().getName(uuid)
-                                            + " §7die Permission " + "§c" + permission + " §7gegeben");
                                 }
                             }
                         }

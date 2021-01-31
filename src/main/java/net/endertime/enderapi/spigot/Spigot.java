@@ -23,6 +23,7 @@ import net.endertime.enderapi.spigot.api.PermAPI;
 import net.endertime.enderapi.spigot.commands.*;
 import net.endertime.enderapi.spigot.listener.*;
 import net.endertime.enderapi.spigot.utils.Group;
+import net.endertime.enderkomplex.mysql.Database;
 import net.endertime.enderkomplex.spigot.commands.*;
 import net.endertime.enderkomplex.spigot.core.ServerData;
 import net.endertime.enderkomplex.spigot.objects.InfoFeed;
@@ -113,7 +114,7 @@ public class Spigot extends JavaPlugin {
             public void run() {
                 Iterator<Player> playerIterator = reports.iterator();
                 while (playerIterator.hasNext())
-                    EnderAPI.getInstance().sendActionBar(playerIterator.next(), "§7Reports: §40 Wie bekomme ich die?");
+                    EnderAPI.getInstance().sendActionBar(playerIterator.next(), "§7Reports: §4" + Database.getOpenReportCount());
             }
         }, 45, 45);
     }
@@ -127,7 +128,7 @@ public class Spigot extends JavaPlugin {
         pm.registerEvents(new net.endertime.enderapi.spigot.listener.PlayerJoinListener(), this);
         pm.registerEvents(new Rank_Command(), this);
         pm.registerEvents(new Reset_Command(), this);
-        //pm.registerEvents(new SpectatorListener(), this);
+        pm.registerEvents(new SpectatorListener(), this);
 
 
         if (CloudNetDriver.getInstance().getCloudServiceProvider().getCloudServiceByName("Proxy-1").getAddress().getPort() == 25565) {

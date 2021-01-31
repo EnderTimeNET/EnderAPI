@@ -164,17 +164,23 @@ public class PlayerJoinListener implements Listener {
                 if (!all.getUniqueId().equals(player.getUniqueId())) {
                     if (EnderAPI.getInstance().isVanished(all)) {
                         if (player.hasPermission("ek.commands.vanish")) {
-                            EnderAPI.getInstance().showPlayer(player, all);
+                            if (!all.getGameMode().equals(GameMode.SPECTATOR))
+                                EnderAPI.getInstance().showPlayer(player, all);
                         }
-                        EnderAPI.getInstance().showPlayer(all, player);
+                        if (!player.getGameMode().equals(GameMode.SPECTATOR))
+                            EnderAPI.getInstance().showPlayer(all, player);
                     } else if (EnderAPI.getInstance().isVanished(player)) {
                         if (player.hasPermission("ek.commands.vanish")) {
-                            EnderAPI.getInstance().showPlayer(all, player);
+                            if (!player.getGameMode().equals(GameMode.SPECTATOR))
+                                EnderAPI.getInstance().showPlayer(all, player);
                         }
-                        EnderAPI.getInstance().showPlayer(player, all);
+                        if (!all.getGameMode().equals(GameMode.SPECTATOR))
+                            EnderAPI.getInstance().showPlayer(player, all);
                     } else {
-                        EnderAPI.getInstance().showPlayer(all, player);
-                        EnderAPI.getInstance().showPlayer(player, all);
+                        if (!player.getGameMode().equals(GameMode.SPECTATOR))
+                            EnderAPI.getInstance().showPlayer(all, player);
+                        if (!all.getGameMode().equals(GameMode.SPECTATOR))
+                            EnderAPI.getInstance().showPlayer(player, all);
                     }
                 }
             }

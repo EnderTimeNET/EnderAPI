@@ -16,7 +16,7 @@ public class PartyAPI {
     }
 
     public PartyAPI () {
-        partyList = new ArrayList<PlayerParty>();
+        partyList = new ArrayList<>();
     }
 
     private List<PlayerParty> partyList;
